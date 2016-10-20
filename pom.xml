@@ -7,7 +7,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>ASM_Back-End</module>
-        <module>ASM_Frond-End</module>
+        <module>ASM_Front-End</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
