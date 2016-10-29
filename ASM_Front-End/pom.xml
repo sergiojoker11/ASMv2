@@ -28,33 +28,19 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                    <compilerArguments>
-                        <endorseddirs>${endorsed.dir}</endorseddirs>
-                    </compilerArguments>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.3</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                     <webResources>
                         <resource>
-                            <directory>target/main/</directory>
+                            <directory>target/gulp-output</directory>
                         </resource>
-                </webResources>
+                    </webResources>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>3.0.1</version>
                 <executions>
                     <execution>
                         <id>copy-source-to-target</id>
@@ -63,10 +49,31 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <outputDirectory>${project.build.directory}/mergedSrc</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>src/</directory>
+                                    <directory>${project.build.directory}/explodeSharedSrc/src</directory>
+                                    <include>main/**/*</include>
+                                    <include>test/**/*</include>
+                                </resource>
+                                <resource>
+                                    <directory>src</directory>
+                                </resource>
+                            </resources>
+                            <overwrite>true</overwrite>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-fonts</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/gulp-output/fonts</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/bower_components/bootstrap/fonts</directory>
                                 </resource>
                             </resources>
                             <overwrite>true</overwrite>
@@ -75,72 +82,67 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.6</version>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <phase>validate</phase>
+                        <id>install node and npm</id>
+                        <phase>initialize</phase>
                         <goals>
-                            <goal>copy</goal>
+                            <goal>install-node-and-npm</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${endorsed.dir}</outputDirectory>
-                            <silent>true</silent>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>javax</groupId>
-                                    <artifactId>javaee-endorsed-api</artifactId>
-                                    <version>7.0</version>
-                                    <type>jar</type>
-                                </artifactItem>
-                            </artifactItems>
+                            <nodeVersion>v0.10.26</nodeVersion>
+                            <npmVersion>1.4.3</npmVersion>
                         </configuration>
+                    </execution>
+                    <execution>
+                        <id>npm install</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>pre-process web resources</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>gulp</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-             <groupId>com.github.eirslett</groupId>
-             <artifactId>frontend-maven-plugin</artifactId>
-             <version>0.0.20</version>
-             <executions>
-                 <execution>
-                     <id>install node and npm</id>
-                     <goals>
-                         <goal>install-node-and-npm</goal>
-                     </goals>
-                     <phase>generate-resources</phase>
-                     <configuration>
-                         <nodeVersion>v0.10.26</nodeVersion>
-                         <npmVersion>1.4.3</npmVersion>
-                     </configuration>
-                </execution>
-                <execution>
-                     <id>npm install</id>
-                     <goals>
-                        <goal>npm</goal>
-                     </goals>
-                     <phase>generate-resources</phase>
-                </execution>
-                <execution>
-                     <id>bower install</id>
-                     <goals>
-                        <goal>bower</goal>
-                     </goals>
-                     <configuration>
-                        <arguments>install</arguments>
-                     </configuration>
-                </execution>
-                <execution>
-                     <id>gulp build</id>
-                     <goals>
-                         <goal>gulp</goal>
-                     </goals>
-                     <phase>generate-resources</phase>
-                </execution>
-            </executions>
-         </plugin>
         </plugins>
     </build>
+    
+    <profiles>
+        <profile>
+            <id>deep-clean</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-clean-plugin</artifactId>
+                        <configuration>
+                            <filesets>
+                                <fileset>
+                                    <directory>bower_components</directory>
+                                </fileset>
+                                <fileset>
+                                    <directory>node_modules</directory>
+                                </fileset>
+                                <fileset>
+                                    <directory>node</directory>
+                                </fileset>
+                            </filesets>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
