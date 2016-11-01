@@ -1,5 +1,4 @@
-(function(){
-    "use strict";
+'use strict';
 
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
@@ -11,5 +10,3 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
 
   $routeProvider.otherwise({redirectTo: '/'});
 }]);
-
-})();
