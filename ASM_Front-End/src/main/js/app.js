@@ -20,5 +20,4 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
         
         // enable html5Mode for pushstate ('#'-less URLs)
     $locationProvider.html5Mode(true);
-    $locationProvider.hashPrefix('!');
 }]);
