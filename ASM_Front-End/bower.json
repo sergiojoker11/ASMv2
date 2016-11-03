@@ -1,6 +1,6 @@
 {
-  "name": "rmas",
-  "description": "730-2_RMAS Web Application",
+  "name": "asm-v2",
+  "description": "Aceitunas Sanchez Montes v2",
   "version": "1.0.0",
   "homepage": "",
   "license": "",
@@ -20,7 +20,8 @@
     "angular-base64": "~2.0.1",
     "angular-file-saver":"~1.1.2",
     "angular-input-modified":"~2.3.1",
-    "angular-elastic": "2.5.1"
+    "angular-elastic": "2.5.1",
+    "jquery": "3.1.1"
   },
   "resolutions": {
     "angular": "~1.5.0",
