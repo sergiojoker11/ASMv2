@@ -7,10 +7,11 @@ $("#menu-toggle").click(function (e) {
 });
 
 /*Scroll Spy*/
-$('body').scrollspy({target: '#spy', offset: 80});
+//$('body').scrollspy({target: '#spy', offset: 80});
+//Comentada porque no funciona
 
 /*Smooth link animation*/
-$('a[href*=#]:not([href=#])').click(function () {
+/*$('a[href*=#]:not([href=#])').click(function () {
     if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') || location.hostname === this.hostname) {
 
         var target = $(this.hash);
@@ -22,5 +23,5 @@ $('a[href*=#]:not([href=#])').click(function () {
             return false;
         }
     }
-});
+});*/
 
