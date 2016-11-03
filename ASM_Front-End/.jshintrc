@@ -2,6 +2,8 @@
   "strict": "global",
   "globals": {
     // Angular
-    "angular": false
+    "angular": false,
+    //jQuery
+    "$": false
   }
 }
