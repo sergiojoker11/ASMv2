@@ -1,12 +1,13 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-angular.module('myApp', [
+var app = angular.module('app', [
   'ngRoute',
   'asm.homeController',
   'asm.view1Controller'
-]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
+]);
+
+app.config(function($locationProvider, $routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl: 'menu/home.html',
@@ -18,6 +19,6 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
         })
         .otherwise({redirectTo: '/home'});
         
-        // enable html5Mode for pushstate ('#'-less URLs)
+    // enable html5Mode for pushstate ('#'-less URLs)
     $locationProvider.html5Mode(true);
-}]);
+});

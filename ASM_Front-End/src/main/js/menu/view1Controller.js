@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('asm.view1Controller', ['ngRoute'])
+var view1Controller = angular.module('asm.view1Controller', []);
 
-.controller('view1Controller', [function($log) {
+view1Controller.controller('view1Controller', function($log) {
         $log.debug("Estoy en view1 controller");
-}]);
+});
 

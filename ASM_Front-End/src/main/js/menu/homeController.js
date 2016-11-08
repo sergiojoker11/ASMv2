@@ -1,8 +1,12 @@
 'use strict';
 
-angular.module('asm.homeController', ['ngRoute'])
+var homeController = angular.module('asm.homeController', []);
 
-.controller('homeController', [function($log) {
+homeController.controller('homeController', function($scope, $log) {
+    
+    $scope.ejecutar = function () {
         $log.debug("Estoy en home controller");
-}]);
+    };
+                
+});
 
