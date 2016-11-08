@@ -3,21 +3,38 @@
 // Declare app level module which depends on views, and components
 var app = angular.module('app', [
   'ngRoute',
-  'asm.homeController',
-  'asm.view1Controller'
+  'asm.inicioController',
+  'asm.productosController',
+  'asm.pedidosController'
 ]);
 
 app.config(function($locationProvider, $routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: 'menu/home.html',
-            controller: 'homeController'
+            templateUrl: 'inicio/inicio.html',
+            controller: 'inicioController'
         })
-        .when('/view1', {
-            templateUrl: 'menu/view1.html',
-            controller: 'view1Controller'
+        .when('/productos', {
+            templateUrl: 'productos/productos.html',
+            controller: 'productosController'
         })
-        .otherwise({redirectTo: '/home'});
+        .when('/dondeEstamos', {
+            templateUrl: 'dondeEstamos/dondeEstamos.html'
+        })
+        .when('/historiaAsm', {
+            templateUrl: 'historiaAsm/historiaAsm.html'
+        })
+        .when('/historiaOlivo', {
+            templateUrl: 'historiaOlivo/historiaOlivo.html'
+        })
+        .when('/contacto', {
+            templateUrl: 'contacto/contacto.html'
+        })
+        .when('/pedidos', {
+            templateUrl: 'pedidos/pedidos.html',
+            controller: 'pedidosController'
+        })
+        .otherwise({redirectTo: '/'});
         
     // enable html5Mode for pushstate ('#'-less URLs)
     $locationProvider.html5Mode(true);
