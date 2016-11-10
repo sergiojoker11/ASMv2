@@ -1,10 +1,10 @@
 'use strict';
 
 /*Menu-toggle*/
-$("#menu-toggle").click(function (e) {
+/*$("#menu-toggle").click(function (e) {
     e.preventDefault();
     $("#wrapper").toggleClass("active");
-});
+});*/
 
 /*Scroll Spy*/
 //$('body').scrollspy({target: '#spy', offset: 80});
@@ -24,4 +24,16 @@ $("#menu-toggle").click(function (e) {
         }
     }
 });*/
+
+var accionesMenuController = angular.module('asm.accionesMenuController', []);
+
+accionesMenuController.controller('accionesMenuController', ['$scope', '$log', function($scope, $log) {
+  
+    $scope.menuMostrado = false;
+    
+    $scope.mostrarMenu = function () {
+        $log.debug("Abriendo/cerrando menu");
+        $scope.menuMostrado = !$scope.menuMostrado;
+    };       
+}]);
 

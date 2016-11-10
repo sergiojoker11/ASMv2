@@ -5,7 +5,10 @@ var app = angular.module('app', [
   'ngRoute',
   'asm.inicioController',
   'asm.productosController',
-  'asm.pedidosController'
+  'asm.pedidosController',
+  'asm.panelControlController',
+  'asm.accionesMenuController',
+  'asm.productosService'
 ]);
 
 app.config(function($locationProvider, $routeProvider) {
@@ -34,8 +37,11 @@ app.config(function($locationProvider, $routeProvider) {
             templateUrl: 'pedidos/pedidos.html',
             controller: 'pedidosController'
         })
-        .otherwise({redirectTo: '/'});
-        
+        .when('/panelControl', {
+            templateUrl: 'panelControl/panelControl.html',
+            controller: 'panelControlController'
+        })
+        .otherwise({redirectTo: '/'});     
     // enable html5Mode for pushstate ('#'-less URLs)
     $locationProvider.html5Mode(true);
 });

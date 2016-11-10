@@ -7,8 +7,8 @@
         <base href="/" />
         <%= style_block %>
     </head>
-    <body ng-app="app">
-        <div id="wrapper">
+    <body ng-app="app" ng-controller="accionesMenuController">
+        <div id="wrapper" ng-class="{'active': menuMostrado}">
             <!-- Sidebar -->
             <div id="sidebar-wrapper" ng-include="'menu/leftMenu.html'" ng-cloak class="ng-cloak"></div>
             <!-- Page content -->
