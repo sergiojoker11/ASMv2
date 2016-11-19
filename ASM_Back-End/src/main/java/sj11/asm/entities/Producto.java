@@ -5,9 +5,11 @@
  */
 package sj11.asm.entities;
 
-import java.util.List;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -19,13 +21,26 @@ import javax.persistence.OneToMany;
 public class Producto {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String nombre;
-    @OneToMany(targetEntity = Formato.class, mappedBy = "id", fetch = FetchType.EAGER)
-    private List<Formato> listaFormatos;
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+    private Set<Formato> listaFormatos;
 
-    public Producto(String nombre, List<Formato> listaFormatos) {
+    public Producto() {
+    }
+
+    public Producto(String nombre, Set<Formato> listaFormatos) {
         this.nombre = nombre;
         this.listaFormatos = listaFormatos;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -36,11 +51,11 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public List<Formato> getListaFormatos() {
+    public Set<Formato> getListaFormatos() {
         return listaFormatos;
     }
 
-    public void setListaFormatos(List<Formato> listaFormatos) {
+    public void setListaFormatos(Set<Formato> listaFormatos) {
         this.listaFormatos = listaFormatos;
     }
 }
