@@ -2,14 +2,13 @@
 
 var productosService = angular.module('asm.productosService', []);
 
-productosService.factory('productosService', function ($log, $http) {
+productosService.factory('productosService', function ($http) {
 
-    var productosFactory = {};
+    function insertar (producto) {
+        return $http.post("http://localhost:8084/ASM_Back-End/productoes", producto);
+    }
 
-    productosFactory.insertar = function (producto) {
-        return $http.post("localhost:8084/ASM_Back-End/", producto);
+    return {
+        insertar: insertar
     };
-
-    return productosFactory;
-
 });

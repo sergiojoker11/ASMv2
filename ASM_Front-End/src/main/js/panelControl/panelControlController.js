@@ -9,10 +9,10 @@ panelControlController.controller('panelControlController', function ($scope, $l
     };
 
     $scope.insertarProducto = function () {
-        productosService.productosFactory.insert($scope.producto1).then(function (response) {
-            $log("productosService.insertar() - response", response);
+        productosService.insertar($scope.producto1).then(function (response) {
+            $log.debug("productosService.insertar() - response", response);
         }, function (error) {
-            $log("productosService.insertar() - response", error);
+            $log.debug("productosService.insertar() - response", error);
         });
         $log.debug("hemnos llamado a pintar", $scope);
     };
