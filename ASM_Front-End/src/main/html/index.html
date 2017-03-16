@@ -4,20 +4,22 @@
         <title>Aceitunas Sanchez Montes</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <base href="/" />
         <%= style_block %>
     </head>
-    <body>
-        <h1>Hello World!</h1>
-        <ul class="menu">
-            <li><a href="#!/view1">view1</a></li>
-            <li><a href="#!/view2">view2</a></li>
-        </ul>
-
-        <div ng-view></div>
-
-        <div>Angular seed app: v<span app-version></span></div>
-        <h1 class="pollas">Rama Nueva</h1>
-        <button class="btn btn-default" type="submit">Button</button>
+    <body ng-app="app" ng-controller="accionesMenuController">
+        <div id="wrapper" ng-class="{'active': menuMostrado}">
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper" ng-include="'menu/leftMenu.html'" ng-cloak class="ng-cloak"></div>
+            <!-- Page content -->
+            <div id="page-content-wrapper">
+                <div class="content-header" ng-include="'menu/header.html'"></div>
+                <div class="page-content inset">
+                    <div ng-view></div>
+                    <div ng-include="'menu/footer.html'"></div>
+                </div>
+            </div>
+        </div>
         <%= script_block %>
     </body>
 </html>
