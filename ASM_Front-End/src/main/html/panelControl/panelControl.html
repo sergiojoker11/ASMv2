@@ -14,13 +14,13 @@
                         </div>
                         <div class="form-group">
                             <label for="formato1">Formato 1</label>
-                            <input type="number" ng-model="producto1.formatos[0].cantidad" class="form-control" id="formato1" placeholder="Formato1"/>
-                            <input type="text" ng-model="producto1.formatos[0].unidadmedida" class="form-control" id="formato1unidadmedida" placeholder="Unidad de medida"/>
+                            <input type="number" ng-model="formato1.cantidad" class="form-control" id="formato1" placeholder="Formato1"/>
+                            <input type="text" ng-model="formato1.unidadMedida" class="form-control" id="formato1unidadmedida" placeholder="Unidad de medida"/>
                         </div>
                         <div class="form-group">
                             <label for="formato2">Formato 2</label>
-                            <input type="number" ng-model="producto1.formatos[1].cantidad" class="form-control" id="formato1" placeholder="Formato2"/>
-                            <input type="text" ng-model="producto1.formatos[1].unidadmedida" class="form-control" id="formato2unidadmedida" placeholder="Unidad de medida"/>
+                            <input type="number" ng-model="formato2.cantidad" class="form-control" id="formato1" placeholder="Formato2"/>
+                            <input type="text" ng-model="formato2.unidadMedida" class="form-control" id="formato2unidadmedida" placeholder="Unidad de medida"/>
                         </div>
                         <button type="submit" ng-click="insertarProducto()" class="btn btn-default">Submit</button>
                     </form>

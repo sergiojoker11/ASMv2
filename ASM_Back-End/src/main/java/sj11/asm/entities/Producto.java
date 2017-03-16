@@ -5,36 +5,44 @@
  */
 package sj11.asm.entities;
 
-import java.util.Set;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author SeRGiO11
  */
 @Entity
+@Table(name = "producto")
 public class Producto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nombre;
-    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
-    private Set<Formato> listaFormatos;
+    private List<Formato> listaFormatos;
 
     public Producto() {
     }
 
-    public Producto(String nombre, Set<Formato> listaFormatos) {
+    public Producto(String nombre, List<Formato> listaFormatos) {
         this.nombre = nombre;
         this.listaFormatos = listaFormatos;
     }
 
+    public Producto(Long id, String nombre, List<Formato> listaFormatos) {
+        this.id = id;
+        this.nombre = nombre;
+        this.listaFormatos = listaFormatos;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
@@ -51,11 +59,12 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public Set<Formato> getListaFormatos() {
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    public List<Formato> getListaFormatos() {
         return listaFormatos;
     }
 
-    public void setListaFormatos(Set<Formato> listaFormatos) {
+    public void setListaFormatos(List<Formato> listaFormatos) {
         this.listaFormatos = listaFormatos;
     }
 }

@@ -9,6 +9,10 @@ panelControlController.controller('panelControlController', function ($scope, $l
     };
 
     $scope.insertarProducto = function () {
+        $scope.producto1.listaFormatos=[];
+        $scope.producto1.listaFormatos.push($scope.formato1);
+        $scope.producto1.listaFormatos.push($scope.formato2);
+        $log.debug($scope.producto1);
         productosService.insertar($scope.producto1).then(function (response) {
             $log.debug("productosService.insertar() - response", response);
         }, function (error) {

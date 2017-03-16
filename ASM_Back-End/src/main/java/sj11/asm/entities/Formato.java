@@ -19,18 +19,34 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Formato {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private int cantidad;
     private String unidadMedida;
-    @ManyToOne
-    @JoinColumn(name = "producto_id")
     private Producto producto;
 
     public Formato() {
     }
 
+    public Formato(Long id, int cantidad) {
+        this.id = id;
+        this.cantidad = cantidad;
+    }
+
+    public Formato(Long id, int cantidad, String unidadMedida) {
+        this.id = id;
+        this.cantidad = cantidad;
+        this.unidadMedida = unidadMedida;
+    }
+
+    public Formato(Long id, int cantidad, String unidadMedida, Producto producto) {
+        this.id = id;
+        this.cantidad = cantidad;
+        this.unidadMedida = unidadMedida;
+        this.producto = producto;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
@@ -39,6 +55,8 @@ public class Formato {
         this.id = id;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "producto_id")
     public Producto getProducto() {
         return producto;
     }
