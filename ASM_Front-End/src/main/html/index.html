@@ -14,13 +14,12 @@
             <!-- Page content -->
             <div id="page-content-wrapper">
                 <div class="content-header" ng-include="'menu/header.html'"></div>
-                <div class="page-content inset" data-spy="scroll" data-target="#spy">
+                <div class="page-content inset">
                     <div ng-view></div>
                     <div ng-include="'menu/footer.html'"></div>
                 </div>
             </div>
         </div>
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
         <%= script_block %>
     </body>
 </html>

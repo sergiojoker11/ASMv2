@@ -1,30 +1,5 @@
 'use strict';
 
-/*Menu-toggle*/
-/*$("#menu-toggle").click(function (e) {
-    e.preventDefault();
-    $("#wrapper").toggleClass("active");
-});*/
-
-/*Scroll Spy*/
-//$('body').scrollspy({target: '#spy', offset: 80});
-//Comentada porque no funciona
-
-/*Smooth link animation*/
-/*$('a[href*=#]:not([href=#])').click(function () {
-    if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') || location.hostname === this.hostname) {
-
-        var target = $(this.hash);
-        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-        if (target.length) {
-            $('html,body').animate({
-                scrollTop: target.offset().top
-            }, 1000);
-            return false;
-        }
-    }
-});*/
-
 var accionesMenuController = angular.module('asm.accionesMenuController', []);
 
 accionesMenuController.controller('accionesMenuController', ['$scope', '$log', function($scope, $log) {
@@ -34,6 +9,6 @@ accionesMenuController.controller('accionesMenuController', ['$scope', '$log', f
     $scope.mostrarMenu = function () {
         $log.debug("Abriendo/cerrando menu");
         $scope.menuMostrado = !$scope.menuMostrado;
-    };       
+    };
 }]);
 
