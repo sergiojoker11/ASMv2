@@ -1,8 +1,7 @@
 'use strict';
 
-var widthSource = angular.module('asm.widthSource', []);
-
-widthSource.directive( 'widthSource', ['$window', function($window) {
+angular.module('asm.widthSource', [])
+        .directive( 'widthSource', function($window) {
 
     return {
         link: function(scope, elem, attrs) {
@@ -15,5 +14,5 @@ widthSource.directive( 'widthSource', ['$window', function($window) {
             });
         }
     };
-}]);
+});
 

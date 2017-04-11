@@ -1,8 +1,7 @@
 'use strict';
 
-var panelControlController = angular.module('asm.panelControlController', []);
-
-panelControlController.controller('panelControlController', function ($scope, $log, productosService) {
+angular.module('asm.panelControlController', [])
+        .controller('panelControlController', function ($scope, $log, productosService) {
     
     $scope.insertarProducto = function () {
         $scope.producto1.listaFormatos=[];

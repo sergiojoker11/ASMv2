@@ -1,8 +1,7 @@
 'use strict';
 
-var accionesMenuController = angular.module('asm.accionesMenuController', []);
-
-accionesMenuController.controller('accionesMenuController', ['$scope', function($scope) {
+angular.module('asm.accionesMenuController', [])
+        .controller('accionesMenuController', function($scope) {
   
     $scope.menuMostrado = false;
     
@@ -15,5 +14,5 @@ accionesMenuController.controller('accionesMenuController', ['$scope', function(
             $scope.menuMostrado = false;
         }
     });
-}]);
+});
 
