@@ -7,7 +7,8 @@ var app = angular.module('app', [
   'asm.pedidosController',
   'asm.panelControlController',
   'asm.accionesMenuController',
-  'asm.productosService'
+  'asm.productosService',
+  'asm.widthSource'
 ]);
 
 app.config(function($locationProvider, $routeProvider) {

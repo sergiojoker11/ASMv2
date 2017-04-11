@@ -1,13 +1,8 @@
 'use strict';
 
-var panelControlController = angular.module('asm.panelControlController', []);
-
-panelControlController.controller('panelControlController', function ($scope, $log, productosService) {
-
-    $scope.ejecutar = function () {
-        $log.debug("Estoy en panelControlController");
-    };
-
+angular.module('asm.panelControlController', [])
+        .controller('panelControlController', function ($scope, $log, productosService) {
+    
     $scope.insertarProducto = function () {
         $scope.producto1.listaFormatos=[];
         $scope.producto1.listaFormatos.push($scope.formato1);
@@ -19,6 +14,14 @@ panelControlController.controller('panelControlController', function ($scope, $l
             $log.debug("productosService.insertar() - response", error);
         });
         $log.debug("hemnos llamado a pintar", $scope);
+    };
+    
+    $scope.getProducto = function () {
+        productosService.get($scope.seleccion).then(function (response) {
+            $log.debug("productosService.insertar() - response", response);
+        }, function (error) {
+            $log.debug("productosService.insertar() - response", error);
+        });
     };
 
 });
