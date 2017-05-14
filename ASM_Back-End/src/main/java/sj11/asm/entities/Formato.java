@@ -5,11 +5,11 @@
  */
 package sj11.asm.entities;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 /**
@@ -17,28 +17,29 @@ import javax.persistence.ManyToOne;
  * @author SeRGiO11
  */
 @Entity
-public class Formato {
+public class Formato implements Serializable {
 
-    private Integer id;
-    private int cantidad;
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Integer cantidad;
     private String unidadMedida;
+    @ManyToOne
     private Producto producto;
 
     public Formato() {
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "producto_id")
     public Producto getProducto() {
         return producto;
     }
@@ -47,11 +48,11 @@ public class Formato {
         this.producto = producto;
     }
 
-    public int getCantidad() {
+    public Integer getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
 

@@ -3,6 +3,8 @@
 angular.module('asm.panelControlController', [])
         .controller('panelControlController', function ($scope, $log, productosService) {
     
+    $scope.producto1={};
+    
     $scope.insertarProducto = function () {
         $scope.producto1.listaFormatos=[];
         $scope.producto1.listaFormatos.push($scope.formato1);
