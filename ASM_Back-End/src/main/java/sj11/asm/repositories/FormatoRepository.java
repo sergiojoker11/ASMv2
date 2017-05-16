@@ -8,7 +8,7 @@ import sj11.asm.entities.Formato;
  *
  * @author SeRGiO11
  */
-@RepositoryRestResource
+@RepositoryRestResource(exported = false)
 public interface FormatoRepository extends CrudRepository<Formato, Long> {
 
 }
