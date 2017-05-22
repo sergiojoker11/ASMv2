@@ -6,7 +6,9 @@ angular.module('asm.accionesMenuController', [])
     $scope.menuMostrado = false;
     
     $scope.mostrarMenu = function () {
-        $scope.menuMostrado = !$scope.menuMostrado;
+        if ($scope.width<=767) {
+            $scope.menuMostrado = !$scope.menuMostrado;
+        }
     };
     
     $scope.$on('widthChange', function (){
