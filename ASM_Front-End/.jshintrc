@@ -1,9 +1,8 @@
 {
   "strict": "global",
+  "validthis": true,
   "globals": {
     // Angular
-    "angular": false,
-    //jQuery
-    "$": false
+    "angular": false
   }
 }
