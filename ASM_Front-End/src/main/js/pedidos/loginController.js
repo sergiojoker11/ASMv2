@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('asm.loginController', [])
-        .controller('loginController', function ($scope, $log, authenticationService, modalDialogService, $uibModalInstance) {
+        .controller('loginController', function ($scope, $log, authenticationService, modalDialogService, $uibModalInstance, alertService) {
 
             $log.debug("LoginController scope", $scope);
             var pollingPromise;
@@ -21,12 +21,14 @@ angular.module('asm.loginController', [])
             }
 
             function login() {
-                authenticationService.login($scope.username, $scope.password).then(function (response) {
+                var credentials = {"username": $scope.username, "password": $scope.password};
+                authenticationService.login(credentials).then(function (response) {
                     $log.debug("Logueo satisfactorio", response);
+                    alertService.addAlert('success', 'Bienvenido '+$scope.username, 0);
                     $scope.close();
                 }, function (error) {
                     $log.debug("Ha habido un error mientras logueo", error);
-                    //FlashService.Error(error.message);
+                    alertService.addAlert('error', 'Nombre de usuario ó contraseña inválida', 0);
                 });
             }
             

@@ -1,12 +1,7 @@
-<div class="jumbotron">
-    <div class="container">
-        <div class="col-sm-8 col-sm-offset-2">
-            <div ng-controller="alertController">
-                <uib-alert ng-repeat="alert in alertsHolder.alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg| errorMessageFilter}}</uib-alert>
-            </div>
-        </div>
-    </div>
+<div ng-controller="alertController">
+    <div uib-alert ng-repeat="alert in alertsHolder.alerts" ng-class="'alert-' + (alert.type)" close="closeAlert($index)">{{alert.msg}}</div>
 </div>
 
 <button type="button" class="btn btn-default" ng-click="openDownloadStaticDataDialog()">Entrar</button>
+
 
