@@ -59,7 +59,8 @@ var vendor_js_sources = [
     "bower_components/angular-base64/angular-base64.js",
     "bower_components/angular-file-saver/dist/angular-file-saver.bundle.js",
     "bower_components/angular-input-modified/dist/angular-input-modified.js",
-    "bower_components/angular-elastic/elastic.js"
+    "bower_components/angular-elastic/elastic.js",
+    "bower_components/angular-ui-notification/dist/angular-ui-notification.js"
 ];
 
 var srcBase = 'target/mergedSrc';

@@ -3,26 +3,25 @@
 var app = angular.module('app', [
     'ngRoute',
     'ui.bootstrap',
+    'ui-notification',
     //Controllers
     'asm.inicioController',
     'asm.productosController',
     'asm.pedidosController',
     'asm.panelControlController',
     'asm.accionesMenuController',
-    'asm.alertController',
     'asm.loginController',
     'asm.registerController',
     //Services
     'asm.productosService',
     'asm.userService',
     'asm.authenticationService',
-    'asm.alertService',
     'asm.modalDialogService',
     //Directives
     'asm.widthSource'
 ]);
 
-app.config(function ($locationProvider, $routeProvider) {
+app.config(function ($locationProvider, $routeProvider, NotificationProvider) {
     $routeProvider
             .when('/', {
                 templateUrl: 'inicio/inicio.html',
@@ -55,4 +54,11 @@ app.config(function ($locationProvider, $routeProvider) {
             .otherwise({redirectTo: '/'});
     // enable html5Mode for pushstate ('#'-less URLs)
     $locationProvider.html5Mode(true);
+    NotificationProvider.setOptions({
+            delay: 8000,
+            startTop: 10,
+            startRight: 10,
+            positionX: 'center',
+            positionY: 'bottom'
+        });
 });

@@ -1,9 +1,8 @@
 'use strict';
 
 angular.module('asm.loginController', [])
-        .controller('loginController', function ($scope, $log, authenticationService, modalDialogService, $uibModalInstance, alertService) {
+        .controller('loginController', function ($scope, $log, authenticationService, modalDialogService, $uibModalInstance, Notification) {
 
-            $log.debug("LoginController scope", $scope);
             var pollingPromise;
 
             function setPromise(promiseIn) {
@@ -17,18 +16,18 @@ angular.module('asm.loginController', [])
             }
 
             function openRegisterDialog() {
-                openDialog('pedidos/register.html', 'registerController', $scope, setPromise, angular.noop());
+                openDialog('pedidos/register.html', 'registerController', $scope, setPromise, close);
             }
 
             function login() {
                 var credentials = {"username": $scope.username, "password": $scope.password};
-                authenticationService.login(credentials).then(function (response) {
+                authenticationService.authenticate(credentials).then(function (response) {
                     $log.debug("Logueo satisfactorio", response);
-                    alertService.addAlert('success', 'Bienvenido '+$scope.username, 0);
+                    authenticationService.login(response.data);
                     $scope.close();
                 }, function (error) {
                     $log.debug("Ha habido un error mientras logueo", error);
-                    alertService.addAlert('error', 'Nombre de usuario ó contraseña inválida', 0);
+                    Notification.error('Nombre de usuario ó contraseña inválida');
                 });
             }
             

@@ -1,25 +1,37 @@
 'use strict';
 
 angular.module('asm.registerController', [])
-        .controller('registerController', function ($scope, $log, $uibModalInstance, userService) {
+        .controller('registerController', function ($scope, $log, $uibModalInstance, userService, Notification, authenticationService, modalDialogService) {
 
-            $log.debug("registerController scope", $scope);
+            var pollingPromise;
+
             function register() {
-                $log.debug("Has presionado Registrar");
                 userService.register($scope.user).then(function (response) {
                     $log.debug("Registro satisfactorio", response);
+                    authenticationService.login(response.data);
+                    Notification.success('Registro satisfactorio. Nos hemos tomado la libertad de loguearte en el sistema');
                     $scope.close();
-                    //FlashService.Success('Registration successful', true);
                 }, function (error) {
                     $log.debug("Registration failure", error);
-                    //FlashService.Error(error.message);
+                    Notification.error('Hubo un problema mientras guardabamos tu información');
                 });
             }
 
-            $scope.close = function () {
+            function close() {
                 $uibModalInstance.close();
-            };
+            }
+
+            function cancel() {
+                modalDialogService.closeDialog(pollingPromise);
+            }
+
+            function dismiss() {
+                $uibModalInstance.dismiss('cancel');
+            }
 
             $scope.register = register;
+            $scope.close = close;
+            $scope.cancel = cancel;
+            $scope.dismiss = dismiss;
         });
 

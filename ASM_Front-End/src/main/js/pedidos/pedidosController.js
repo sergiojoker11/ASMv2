@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('asm.pedidosController', [])
-        .controller('pedidosController', function ($scope, $log, modalDialogService) {
+        .controller('pedidosController', function ($scope, $log, modalDialogService, $rootScope, authenticationService) {
             $log.debug("Estoy en pedidosController");
             
             var pollingPromise;
@@ -16,8 +16,29 @@ angular.module('asm.pedidosController', [])
                         .then(successHandler, partialCloseDialog);
             }
             
-            $scope.openDownloadStaticDataDialog = function () {
+            function openDownloadStaticDataDialog() {
                 openDialog('pedidos/login.html', 'loginController', $scope, setPromise, angular.noop());
-            };
+            }
+            
+            function getEntrarButtonText() {
+                if (authenticationService.isAuthenticated()) {
+                    return $rootScope.user.username;
+                } else {
+                    return "Entrar";
+                }
+            }
+            
+            function isAuthenticated() {
+                return authenticationService.isAuthenticated();
+            }
+            
+            function logout() {
+                return authenticationService.logout();
+            }
+            
+            $scope.openDownloadStaticDataDialog = openDownloadStaticDataDialog;
+            $scope.getEntrarButtonText = getEntrarButtonText;
+            $scope.isAuthenticated = isAuthenticated;
+            $scope.logout = logout;
         });
 

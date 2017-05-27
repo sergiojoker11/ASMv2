@@ -13,9 +13,9 @@
             <div id="sidebar-wrapper" ng-include="'menu/leftMenu.html'" ng-cloak class="ng-cloak"></div>
             <!-- Page content -->
             <div id="page-content-wrapper">
-                <div class="content-header" ng-include="'menu/header.html'"></div>
-                <div class="page-content inset">
-                    <div ng-view ng-cloak class="content-container ng-cloak"></div>
+                <div class="header-container" ng-include="'menu/header.html'"></div>
+                <div class="content-container">
+                    <div ng-view ng-cloak class="ng-cloak"></div>
                     <div ng-include="'menu/footer.html'"></div>
                 </div>
             </div>
