@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('asm.registerController', [])
+
         .controller('registerController', function ($scope, $log, $uibModalInstance, userService, Notification, authenticationService) {
+
 
             function register() {
                 userService.register($scope.user).then(function (response) {
