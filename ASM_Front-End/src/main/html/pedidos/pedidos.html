@@ -4,10 +4,11 @@
     <div class="col-md-2 pull-right">
         <div ng-show="isAuthenticated()" class="btn-group" uib-dropdown keyboard-nav>
             <button id="loginButton" type="button" class="btn btn-primary" uib-dropdown-toggle>
-                {{getEntrarButtonText()}}<span class="caret"></span>
+                {{getEntrarButtonText()}}&npsp<span class="caret"></span>
             </button>
             <ul class="dropdown-menu dropdown-menu-left" uib-dropdown-menu role="menu" aria-labelledby="loginButton">
                 <li role="menuitem"><a>Mi perfil</a></li>
+                <li role="menuitem"><a>Mis facturas</a></li>
                 <li role="menuitem"><a>Administración</a></li>
                 <li class="divider"></li>
                 <li role="menuitem"><a ng-click="logout()">Salir</a></li>

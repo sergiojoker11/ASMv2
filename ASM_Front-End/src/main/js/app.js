@@ -18,7 +18,8 @@ var app = angular.module('app', [
     'asm.authenticationService',
     'asm.modalDialogService',
     //Directives
-    'asm.widthSource'
+    'asm.widthSource',
+    'asm.passwordVerify'
 ]);
 
 app.config(function ($locationProvider, $routeProvider, NotificationProvider) {
