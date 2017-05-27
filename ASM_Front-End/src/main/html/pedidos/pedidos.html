@@ -1,7 +1,22 @@
-<div ng-controller="alertController">
-    <div uib-alert ng-repeat="alert in alertsHolder.alerts" ng-class="'alert-' + (alert.type)" close="closeAlert($index)">{{alert.msg}}</div>
+<div class="row">
+    <div class="col-md-10">
+    </div>
+    <div class="col-md-2 pull-right">
+        <div ng-show="isAuthenticated()" class="btn-group" uib-dropdown keyboard-nav>
+            <button id="loginButton" type="button" class="btn btn-primary" uib-dropdown-toggle>
+                {{getEntrarButtonText()}}<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-left" uib-dropdown-menu role="menu" aria-labelledby="loginButton">
+                <li role="menuitem"><a>Mi perfil</a></li>
+                <li role="menuitem"><a>Administración</a></li>
+                <li class="divider"></li>
+                <li role="menuitem"><a ng-click="logout()">Salir</a></li>
+            </ul>
+        </div>
+        <button ng-hide="isAuthenticated()" type="button" class="btn btn-primary" ng-click="openDownloadStaticDataDialog()">
+            <span>{{getEntrarButtonText()}}</span>
+        </button>
+    </div>
 </div>
-
-<button type="button" class="btn btn-default" ng-click="openDownloadStaticDataDialog()">Entrar</button>
 
 

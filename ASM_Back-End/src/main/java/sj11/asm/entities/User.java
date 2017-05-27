@@ -2,6 +2,7 @@ package sj11.asm.entities;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,9 +21,12 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
-    private String apellidos;
+    @Column(unique = true)
     private String username;
     private String password;
+    @Column(unique = true)
+    private String email;
+    private boolean admin;
 
     public Long getId() {
         return id;
@@ -38,14 +42,6 @@ public class User implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
     }
 
     public String getUsername() {
@@ -64,14 +60,31 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 79 * hash + Objects.hashCode(this.id);
-        hash = 79 * hash + Objects.hashCode(this.nombre);
-        hash = 79 * hash + Objects.hashCode(this.apellidos);
-        hash = 79 * hash + Objects.hashCode(this.username);
-        hash = 79 * hash + Objects.hashCode(this.password);
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.nombre);
+        hash = 97 * hash + Objects.hashCode(this.username);
+        hash = 97 * hash + Objects.hashCode(this.password);
+        hash = 97 * hash + Objects.hashCode(this.email);
+        hash = 97 * hash + (this.admin ? 1 : 0);
         return hash;
     }
 
@@ -87,16 +100,19 @@ public class User implements Serializable {
             return false;
         }
         final User other = (User) obj;
-        if (!Objects.equals(this.nombre, other.nombre)) {
+        if (this.admin != other.admin) {
             return false;
         }
-        if (!Objects.equals(this.apellidos, other.apellidos)) {
+        if (!Objects.equals(this.nombre, other.nombre)) {
             return false;
         }
         if (!Objects.equals(this.username, other.username)) {
             return false;
         }
         if (!Objects.equals(this.password, other.password)) {
+            return false;
+        }
+        if (!Objects.equals(this.email, other.email)) {
             return false;
         }
         if (!Objects.equals(this.id, other.id)) {
@@ -107,6 +123,6 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", username=" + username + ", password=" + password + '}';
+        return "User{" + "id=" + id + ", nombre=" + nombre + ", username=" + username + ", password=" + password + ", email=" + email + ", admin=" + admin + '}';
     }
 }
