@@ -20,7 +20,7 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nombre;
+    private String name;
     @Column(unique = true)
     private String username;
     private String password;
@@ -36,11 +36,11 @@ public class User implements Serializable {
     }
 
     public String getNombre() {
-        return nombre;
+        return name;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.name = nombre;
     }
 
     public String getUsername() {
@@ -79,7 +79,7 @@ public class User implements Serializable {
     public int hashCode() {
         int hash = 7;
         hash = 97 * hash + Objects.hashCode(this.id);
-        hash = 97 * hash + Objects.hashCode(this.nombre);
+        hash = 97 * hash + Objects.hashCode(this.name);
         hash = 97 * hash + Objects.hashCode(this.username);
         hash = 97 * hash + Objects.hashCode(this.password);
         hash = 97 * hash + Objects.hashCode(this.email);
@@ -102,7 +102,7 @@ public class User implements Serializable {
         if (this.admin != other.admin) {
             return false;
         }
-        if (!Objects.equals(this.nombre, other.nombre)) {
+        if (!Objects.equals(this.name, other.name)) {
             return false;
         }
         if (!Objects.equals(this.username, other.username)) {
@@ -122,6 +122,6 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", nombre=" + nombre + ", username=" + username + ", password=" + password + ", email=" + email + ", admin=" + admin + '}';
+        return "User{" + "id=" + id + ", nombre=" + name + ", username=" + username + ", password=" + password + ", email=" + email + ", admin=" + admin + '}';
     }
 }

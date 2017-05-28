@@ -12,6 +12,7 @@ var app = angular.module('app', [
     'asm.accionesMenuController',
     'asm.loginController',
     'asm.registerController',
+    'asm.remindPasswordController',
     //Services
     'asm.productosService',
     'asm.userService',

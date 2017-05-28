@@ -58,14 +58,14 @@ INSERT INTO `formato` (`id`, `cantidad`, `unidad_medida`, `producto_id`) VALUES
 
 CREATE TABLE `producto` (
   `id` bigint(20) NOT NULL,
-  `nombre` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL
+  `name` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`id`, `nombre`) VALUES
+INSERT INTO `producto` (`id`, `name`) VALUES
 (2, 'Aceituna Manzanilla'),
 (3, 'Aceituna Gordal'),
 (4, 'Banderillas'),
@@ -81,7 +81,7 @@ CREATE TABLE `user` (
   `id` bigint(20) NOT NULL,
   `admin` bit(1) NOT NULL,
   `email` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
-  `nombre` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `password` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
   `username` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
@@ -90,7 +90,7 @@ CREATE TABLE `user` (
 -- Volcado de datos para la tabla `user`
 --
 
-INSERT INTO `user` (`id`, `admin`, `email`, `nombre`, `password`, `username`) VALUES
+INSERT INTO `user` (`id`, `admin`, `email`, `name`, `password`, `username`) VALUES
 (1, b'0', 'sergio.anger@gmail.com', 'Sergio Martin Sanchez', 'x', 'sergiojoker11'),
 (2, b'0', 'merce@pertusa.com', 'Maria Josefa Sánchez Pertusa', 'x', 'Merce'),
 (3, b'0', 'roberkolgao@martin.com', 'Roberto Martín Sánchez', 'x', 'Roberkolgao');

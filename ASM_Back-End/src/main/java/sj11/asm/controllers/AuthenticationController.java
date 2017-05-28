@@ -17,8 +17,12 @@ import sj11.asm.repositories.UserRepository;
 @RestController
 public class AuthenticationController {
 
-    @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public ResponseEntity<?> login(@RequestBody User user) {

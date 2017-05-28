@@ -11,12 +11,17 @@ angular.module('asm.loginController', [])
             function openRegisterDialog() {
                 openDialog('pedidos/register.html', 'registerController', $scope, angular.noop(), close);
             }
+            
+            function openRemindPasswordDialog() {
+                openDialog('pedidos/remindPassword.html', 'remindPasswordController', $scope, angular.noop(), close);
+            }
 
             function login() {
                 var credentials = {"username": $scope.username, "password": $scope.password};
                 authenticationService.authenticate(credentials).then(function (response) {
                     $log.debug("Logueo satisfactorio", response);
                     authenticationService.login(response.data);
+                    authenticationService.sendEmail();
                     $scope.close();
                 }, function (error) {
                     $log.debug("Ha habido un error mientras logueo", error);
@@ -29,6 +34,7 @@ angular.module('asm.loginController', [])
             }
 
             $scope.openRegisterDialog = openRegisterDialog;
+            $scope.openRemindPasswordDialog = openRemindPasswordDialog;
             $scope.login = login;
             $scope.close = close;
         });

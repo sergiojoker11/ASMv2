@@ -19,4 +19,6 @@ public interface UserRepository extends Repository<User, Long> {
     User findByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
 
     User save(User user);
+
+    User findByEmail(String email);
 }

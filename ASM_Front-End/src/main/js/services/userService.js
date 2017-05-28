@@ -6,7 +6,12 @@ angular.module('asm.userService', [])
                 return $http.post('http://localhost:8084/ASM_Back-End/users/',  user);
             }
             
+            function remindPassword(email) {
+                return $http.post('http://localhost:8084/ASM_Back-End/remindPassword/',  email);
+            }
+            
             return {
-                register: register
+                register: register,
+                remindPassword: remindPassword
             };
         });

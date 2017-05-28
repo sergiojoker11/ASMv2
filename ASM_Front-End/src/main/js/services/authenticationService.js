@@ -22,12 +22,17 @@ angular.module('asm.authenticationService', [])
             function isAuthenticated() {
                 return angular.isDefined($rootScope.user);
             }
+            
+            function sendEmail() {
+                $http.get('http://localhost:8084/ASM_Back-End/correo');
+            }
 
             return {
                 authenticate: authenticate,
                 login: login,
                 isAuthenticated: isAuthenticated,
-                logout: logout
+                logout: logout,
+                sendEmail: sendEmail
             };
         });
 
