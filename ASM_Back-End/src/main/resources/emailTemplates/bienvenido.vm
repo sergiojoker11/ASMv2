@@ -1,0 +1,9 @@
+<html>
+<body>
+<p>Estimado ${user.username},</p>
+
+<p>Bienvenido a ASM,</p>
+
+<p>Equipo Aceitunas Sánchez Montes</p>
+</html>
+</body>
