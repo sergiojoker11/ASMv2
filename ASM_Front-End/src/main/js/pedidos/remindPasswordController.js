@@ -6,7 +6,7 @@ angular.module('asm.remindPasswordController', [])
             function remindPassword() {
                 userService.remindPassword($scope.email).then(function (response) {
                     $log.debug("Solicitud de recordatorio de password satisfactoria", response);
-                    Notification.success('Solicitud de recordatorio de password enviada satisfactoriamente');
+                    Notification.success('Solicitud de recordatorio de password enviada satisfactoriamente, en caso de que el email introducido exista en el sistema');
                     $scope.dismiss();
                 }, function (error) {
                     $log.debug("Solicitud de recordatorio de password fallida", error);

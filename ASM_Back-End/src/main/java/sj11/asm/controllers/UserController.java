@@ -38,7 +38,11 @@ public class UserController {
         User user = userRepository.findByEmail(userEmail);
         Map<String, Object> templateContext = new HashMap<>();
         templateContext.put("user", user);
-        emailService.sendMail(user.getEmail(), "Aceitunas Sánchez Montes: solicitus de recordatorio de password", "passwordRemider.vm", templateContext);
+        try {
+            emailService.sendMail(user.getEmail(), "Aceitunas Sánchez Montes: solicitus de recordatorio de password", "passwordRemider.vm", templateContext);
+        } catch (RuntimeException runExc) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

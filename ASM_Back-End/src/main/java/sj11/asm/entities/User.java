@@ -35,12 +35,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getNombre() {
+    public String getName() {
         return name;
     }
 
-    public void setNombre(String nombre) {
-        this.name = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getUsername() {
@@ -122,6 +122,6 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", nombre=" + name + ", username=" + username + ", password=" + password + ", email=" + email + ", admin=" + admin + '}';
+        return "User{" + "id=" + id + ", name=" + name + ", username=" + username + ", password=" + password + ", email=" + email + ", admin=" + admin + '}';
     }
 }
