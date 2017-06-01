@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <button type="button" class="btn btn-default pull-right" ng-click="expandNewProductPanel()"  ng-disable="isNewProductoPanelCollapsed">Añadir producto</button>
+                <button type="button" class="btn btn-primary pull-right" ng-click="expandNewGeneroPanel()"  ng-disable="isNewGeneroPanelCollapsed">Añadir género</button>
+            </div>
+            <br>
+            <div uib-collapse="isNewGeneroPanelCollapsed">
+                <div>
+                    <form id="user-group-detail-form" name="newGeneroForm" novalidate class="form">
+                        <div class="well well-lg" ng-include="'admin/newGenero.html'"></div>
+                    </form>
+                </div>
+            </div>
+            <div uib-collapse="isNewProductoPanelCollapsed">
+                <div>
+                    <form id="user-group-detail-form" name="newProductoForm" novalidate class="form">
+                        <div class="well well-lg" ng-include="'admin/newProducto.html'"></div>
+                    </form>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre de género</th>
+                    </tr>
+                </thead>
+                <tbody data-ng-repeat="genero in generos.list" data-ng-switch on="generoDataCollapse[$index]">
+                    <tr data-ng-click="selectTableRow($index)" ng-class-odd="'table-striped-odd-row'">
+                        <td><a href oncontextmenu="return false;">{{genero.name}}</a></td>
+                    </tr>
+                    <tr data-ng-switch-when="true">
+                        <td colspan="3">
+                            <div>
+                                <form id="user-group-detail-form" name="generoForm" novalidate class="form">
+                                    <div class="well well-lg" ng-include="'admin/genero.html'"></div>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

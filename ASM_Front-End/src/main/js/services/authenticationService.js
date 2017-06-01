@@ -10,7 +10,8 @@ angular.module('asm.authenticationService', [])
                 $rootScope.user = {
                         "id": user.id,
                         "username": user.username,
-                        "email": user.email
+                        "email": user.email,
+                        "admin": user.admin
                     };
                 Notification.success('Bienvenido '+$rootScope.user.username+ ' !');
             }
@@ -22,17 +23,16 @@ angular.module('asm.authenticationService', [])
             function isAuthenticated() {
                 return angular.isDefined($rootScope.user);
             }
-            
-            function sendEmail() {
-                $http.get('http://localhost:8084/ASM_Back-End/correo');
+            function isAdmin() {
+                return angular.isDefined($rootScope.user) && $rootScope.user.admin;
             }
 
             return {
                 authenticate: authenticate,
                 login: login,
                 isAuthenticated: isAuthenticated,
-                logout: logout,
-                sendEmail: sendEmail
+                isAdmin: isAdmin,
+                logout: logout
             };
         });
 

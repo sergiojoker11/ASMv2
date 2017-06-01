@@ -21,7 +21,6 @@ angular.module('asm.loginController', [])
                 authenticationService.authenticate(credentials).then(function (response) {
                     $log.debug("Logueo satisfactorio", response);
                     authenticationService.login(response.data);
-                    authenticationService.sendEmail();
                     $scope.close();
                 }, function (error) {
                     $log.debug("Ha habido un error mientras logueo", error);

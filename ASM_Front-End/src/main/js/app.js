@@ -13,14 +13,17 @@ var app = angular.module('app', [
     'asm.loginController',
     'asm.registerController',
     'asm.remindPasswordController',
+    'asm.adminController',
     //Services
     'asm.productosService',
     'asm.userService',
     'asm.authenticationService',
     'asm.modalDialogService',
+    'asm.catalogoService',
     //Directives
     'asm.widthSource',
-    'asm.passwordVerify'
+    'asm.passwordVerify',
+    'asm.generosList'
 ]);
 
 app.config(function ($locationProvider, $routeProvider, NotificationProvider) {
@@ -52,6 +55,10 @@ app.config(function ($locationProvider, $routeProvider, NotificationProvider) {
             .when('/panelControl', {
                 templateUrl: 'panelControl/panelControl.html',
                 controller: 'panelControlController'
+            })
+            .when('/admin', {
+                templateUrl: 'admin/admin.html',
+                controller: 'adminController'
             })
             .otherwise({redirectTo: '/'});
     // enable html5Mode for pushstate ('#'-less URLs)

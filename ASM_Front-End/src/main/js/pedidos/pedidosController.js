@@ -28,17 +28,14 @@ angular.module('asm.pedidosController', [])
                 }
             }
             
-            function isAuthenticated() {
-                return authenticationService.isAuthenticated();
-            }
-            
             function logout() {
                 return authenticationService.logout();
             }
             
             $scope.openDownloadStaticDataDialog = openDownloadStaticDataDialog;
             $scope.getEntrarButtonText = getEntrarButtonText;
-            $scope.isAuthenticated = isAuthenticated;
+            $scope.isAuthenticated = authenticationService.isAuthenticated;
+            $scope.isAdmin = authenticationService.isAdmin;
             $scope.logout = logout;
         });
 
