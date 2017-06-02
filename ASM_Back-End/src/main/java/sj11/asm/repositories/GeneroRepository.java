@@ -15,4 +15,6 @@ public interface GeneroRepository extends Repository<Genero, Long> {
     Genero save(Genero user);
 
     List<Genero> findAll();
+
+    Genero findOne(Long id);
 }

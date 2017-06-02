@@ -6,7 +6,17 @@ angular.module('asm.catalogoService', [])
                 return $http.get('http://localhost:8084/ASM_Back-End/generoes/');
             }
             
+            function saveGenero(genero) {
+                return $http.post('http://localhost:8084/ASM_Back-End/generoes/', genero);
+            }
+            
+            function saveProducto(producto) {
+                return $http.post('http://localhost:8084/ASM_Back-End/productoes/', producto);
+            }
+            
             return {
-                getGeneros: getGeneros
+                getGeneros: getGeneros,
+                saveGenero: saveGenero,
+                saveProducto: saveProducto
             };
         });

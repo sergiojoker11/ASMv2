@@ -18,10 +18,9 @@ angular.module('asm.generosList', [])
                         }, function () {
                             Notification.error('Hubo un error cuando intentabamos mostrar el catalogo. Si el error persiste, póngase en contacto con el administrador');
                         });
-                        $log.debug("Cataaaaaaalogo", $scope);
                     }
 
-                    function collapseExistingGeneroEditPanels() {
+                    function collapseExistingEditPanels() {
                         $scope.generoDataCollapse = $scope.generos.list.map(function () {
                             return false;
                         });
@@ -29,16 +28,8 @@ angular.module('asm.generosList', [])
                         expandedTableRowIndex = "";
                     }
 
-                    function addNewGeneroToScope() {
-                        $scope.userGroup = {};
-                    }
-                    
-                    function addNewProductoToScope() {
-                        $scope.userGroup = {};
-                    }
-
-                    function collapseAllGeneroEditPanels() {
-                        collapseExistingGeneroEditPanels();
+                    function collapseAllEditPanels() {
+                        collapseExistingEditPanels();
                         $scope.isNewGeneroPanelCollapsed = true;
                         $scope.isNewProductoPanelCollapsed = true;
                     }
@@ -47,12 +38,39 @@ angular.module('asm.generosList', [])
                         $scope.genero = angular.copy($scope.generos.list[index]);
                     }
 
+                    function saveGenero() {
+                        catalogoService.saveGenero($scope.genero).then(function (response) {
+                            $log.debug("Success genero", response);
+                            $scope.generos.list.push(response.data);
+                            Notification.success("El elemento se ha guardado correctamente");
+                            $scope.cancel();
+                        }, function (error) {
+                            $log.debug("error genero", error);
+                            Notification.error("No hemos podido guardar el elemento. Si el error persiste, póngase en contacto con el administrador");
+                        });
+                    }
+
+                    function saveProducto() {
+                        catalogoService.saveProducto($scope.producto).then(function (response) {
+                            $log.debug("Success producto", response);
+                            $scope.generos.list.push(response.data);
+                            Notification.success("El elemento se ha guardado correctamente");
+                            $scope.cancel();
+                        }, function (error) {
+                            $log.debug("error producto", error);
+                             Notification.error("No hemos podido guardar el elemento. Si el error persiste, póngase en contacto con el administrador");
+                        });
+                    }
+
+                    function isInvalidUserInput(element) {
+                        return angular.isDefined(element) && element.$invalid && !element.$pristine;
+                    }
+
                     $scope.expandNewGeneroPanel = function () {
                         if (angular.isDefined($scope.genero)) {
                             $scope.cancel();
                         }
-                        collapseExistingGeneroEditPanels();
-                        addNewGeneroToScope();
+                        collapseExistingEditPanels();
                         $scope.isNewGeneroPanelCollapsed = false;
                         selectedIndex = -1;
                     };
@@ -60,8 +78,7 @@ angular.module('asm.generosList', [])
                         if (angular.isDefined($scope.genero)) {
                             $scope.cancel();
                         }
-                        collapseExistingGeneroEditPanels();
-                        addNewProductoToScope();
+                        collapseExistingEditPanels();
                         $scope.isNewProductoPanelCollapsed = false;
                         selectedIndex = -1;
                     };
@@ -90,15 +107,19 @@ angular.module('asm.generosList', [])
                     };
 
                     $scope.cancel = function () {
-                        collapseAllGeneroEditPanels();
+                        collapseAllEditPanels();
                         $scope.genero = {};
-                        $scope.newGeneroForm.$setPristine();
+                        $scope.producto = {};
                     };
 
                     $scope.genero = {};
+                    $scope.producto = {};
                     $scope.generos = {list: []};
                     getGeneros();
-                    collapseAllGeneroEditPanels();
+                    collapseAllEditPanels();
+                    $scope.saveGenero = saveGenero;
+                    $scope.saveProducto = saveProducto;
+                    $scope.isInvalidUserInput = isInvalidUserInput;
 
                 }
             };

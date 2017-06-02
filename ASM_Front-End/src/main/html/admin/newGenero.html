@@ -1,2 +1,12 @@
-<h3>Nuevo Genero</h3>
-<button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+<form id="newGeneroForm" name="newGeneroForm" novalidate role="form" class="form">
+    <div class="form-horizontal">
+        <div class="form-group" ng-class="{ 'has-error has-feedback': isInvalidUserInput(newGeneroForm.name)}">
+            <label for="generoNombre" class="col-sm-3 control-label">Nombre del género</label>
+            <div class="col-sm-9">
+                <input type="text" name="generoNombre" id="generoNombre" class="form-control" ng-model="genero.name" required/>
+            </div>
+        </div>
+    </div>
+    <button type="submit" ng-disabled="newGeneroForm.$invalid" class="btn btn-primary" ng-click="saveGenero()">Guardar</button>
+    <button class="btn btn-primary" ng-click="cancel()">Cancel</button>
+</form>
