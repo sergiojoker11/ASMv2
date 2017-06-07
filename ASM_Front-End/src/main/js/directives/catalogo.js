@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('asm.generosList', [])
-        .directive("generosList", function () {
+angular.module('asm.catalogo', [])
+        .directive("catalogo", function () {
             return {
                 restrict: "E",
                 templateUrl: 'admin/catalogo.html',
@@ -30,6 +30,10 @@ angular.module('asm.generosList', [])
 
                     function collapseAllEditPanels() {
                         collapseExistingEditPanels();
+                        collapseNewPanels();
+                    }
+
+                    function collapseNewPanels() {
                         $scope.isNewGeneroPanelCollapsed = true;
                         $scope.isNewProductoPanelCollapsed = true;
                     }
@@ -58,12 +62,19 @@ angular.module('asm.generosList', [])
                             $scope.cancel();
                         }, function (error) {
                             $log.debug("error producto", error);
-                             Notification.error("No hemos podido guardar el elemento. Si el error persiste, póngase en contacto con el administrador");
+                            Notification.error("No hemos podido guardar el elemento. Si el error persiste, póngase en contacto con el administrador");
                         });
                     }
 
                     function isInvalidUserInput(element) {
                         return angular.isDefined(element) && element.$invalid && !element.$pristine;
+                    }
+
+                    function expandRow(index) {
+                        expandedTableRowIndex = index;
+                        tableRowExpanded = true;
+                        $scope.generoDataCollapse[expandedTableRowIndex] = true;
+                        setupGeneroForEditing(index);
                     }
 
                     $scope.expandNewGeneroPanel = function () {
@@ -85,23 +96,17 @@ angular.module('asm.generosList', [])
 
                     $scope.selectTableRow = function (index) {
 
-                        $scope.isNewGeneroPanelCollapsed = true;
+                        collapseNewPanels();
                         if (tableRowExpanded === true) {
                             if (expandedTableRowIndex === index) {
                                 $scope.cancel();
                             } else {
                                 $scope.generoDataCollapse[expandedTableRowIndex] = false;
                                 $scope.cancel();
-                                expandedTableRowIndex = index;
-                                tableRowExpanded = true;
-                                $scope.generoDataCollapse[expandedTableRowIndex] = true;
-                                setupGeneroForEditing(index);
+                                expandRow(index);
                             }
                         } else {
-                            tableRowExpanded = true;
-                            expandedTableRowIndex = index;
-                            $scope.generoDataCollapse[index] = true;
-                            setupGeneroForEditing(index);
+                            expandRow(index);
                         }
                         selectedIndex = index;
                     };
@@ -120,6 +125,9 @@ angular.module('asm.generosList', [])
                     $scope.saveGenero = saveGenero;
                     $scope.saveProducto = saveProducto;
                     $scope.isInvalidUserInput = isInvalidUserInput;
+                    $scope.print = function() {
+                        $log.debug("Funca");
+                    };
 
                 }
             };

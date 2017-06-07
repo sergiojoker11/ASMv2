@@ -18,18 +18,18 @@
                 <thead>
                     <tr>
                         <th>Nombre de género</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody data-ng-repeat="genero in generos.list" data-ng-switch on="generoDataCollapse[$index]">
-                    <tr data-ng-click="selectTableRow($index)" ng-class-odd="'table-striped-odd-row'">
-                        <td><a href oncontextmenu="return false;">{{genero.name}}</a></td>
+                    <tr ng-class-odd="'table-striped-odd-row'">
+                        <td data-ng-click="selectTableRow($index)"><a href oncontextmenu="return false;">{{genero.name}}</a></td>
+                        <td><a href oncontextmenu="return false;" ng-click="print()">Editar</a></td>
                     </tr>
                     <tr data-ng-switch-when="true">
                         <td colspan="3">
                             <div>
-                                <form id="user-group-detail-form" name="generoForm" novalidate class="form">
-                                    <div class="well well-lg" ng-include="'admin/genero.html'"></div>
-                                </form>
+                                <genero genero="genero"></genero>
                             </div>
                         </td>
                     </tr>

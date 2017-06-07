@@ -23,7 +23,8 @@ var app = angular.module('app', [
     //Directives
     'asm.widthSource',
     'asm.passwordVerify',
-    'asm.generosList'
+    'asm.catalogo',
+    'asm.genero'
 ]);
 
 app.config(function ($locationProvider, $routeProvider, NotificationProvider) {
