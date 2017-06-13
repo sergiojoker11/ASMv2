@@ -1,5 +1,24 @@
-<form id="user-group-detail-form" name="generoForm" novalidate class="form">
-    <div class="well well-lg">
-        {{genero.id}}
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre de producto</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="producto in productos.list">
+                <tr>
+                    <td>
+                        <span oncontextmenu="return false;">{{producto.nombre}}</span>
+                    </td>
+                    <td>
+                        <a href oncontextmenu="return false;" ng-click="print()">Editar</a>
+                        <a href oncontextmenu="return false;" ng-click="print()">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p ng-hide="productos.list.length" class="text-center">No existen productos en este género</p>
     </div>
-</form>
+</div>

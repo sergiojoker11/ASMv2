@@ -9,41 +9,36 @@ angular.module('asm.genero', [])
                 scope: {
                     genero: '='
                 },
-                controller: function ($log, $scope) {
+                controller: function ($log, $scope, catalogoService, Notification) {
 
-//                    var selectedIndex;
-//                    var tableRowExpanded;
-//                    var expandedTableRowIndex;
+                    var selectedIndex;
+                    var tableRowExpanded;
+                    var expandedTableRowIndex;
 //
-//                    function getGeneros() {
-//                        catalogoService.getGeneros().then(function (response) {
-//                            $scope.generos.list = response.data._embedded.generoes;
-//                        }, function () {
-//                            Notification.error('Hubo un error cuando intentabamos mostrar el catalogo. Si el error persiste, póngase en contacto con el administrador');
-//                        });
-//                    }
-//
-//                    function collapseExistingEditPanels() {
-//                        $scope.generoDataCollapse = $scope.generos.list.map(function () {
-//                            return false;
-//                        });
-//                        tableRowExpanded = false;
-//                        expandedTableRowIndex = "";
-//                    }
-//
-//                    function collapseAllEditPanels() {
-//                        collapseExistingEditPanels();
-//                        collapseNewPanels();
-//                    }
-//
-//                    function collapseNewPanels() {
-//                        $scope.isNewGeneroPanelCollapsed = true;
-//                        $scope.isNewProductoPanelCollapsed = true;
-//                    }
-//
-//                    function setupGeneroForEditing(index) {
-//                        $scope.genero = angular.copy($scope.generos.list[index]);
-//                    }
+                    function getProductos() {
+                        catalogoService.getProductos($scope.genero._links.productosList.href).then(function (response) {
+                            $log.debug("Producossss", response);
+                            $scope.productos.list = response.data._embedded.productoes;
+                        }, function () {
+                            Notification.error('Hubo un error cuando intentabamos mostrar el catalogo. Si el error persiste, póngase en contacto con el administrador');
+                        });
+                    }
+
+                    function collapseExistingEditPanels() {
+                        $scope.productoDataCollapse = $scope.productos.list.map(function () {
+                            return false;
+                        });
+                        tableRowExpanded = false;
+                        expandedTableRowIndex = "";
+                    }
+
+                    function collapseAllEditPanels() {
+                        collapseExistingEditPanels();
+                    }
+
+                    function setupProductoForEditing(index) {
+                        $scope.producto = angular.copy($scope.productos.list[index]);
+                    }
 
 //                    function saveGenero() {
 //                        catalogoService.saveGenero($scope.genero).then(function (response) {
@@ -73,12 +68,12 @@ angular.module('asm.genero', [])
 //                        return angular.isDefined(element) && element.$invalid && !element.$pristine;
 //                    }
 //
-//                    function expandRow(index) {
-//                        expandedTableRowIndex = index;
-//                        tableRowExpanded = true;
-//                        $scope.generoDataCollapse[expandedTableRowIndex] = true;
-//                        setupGeneroForEditing(index);
-//                    }
+                    function expandRow(index) {
+                        expandedTableRowIndex = index;
+                        tableRowExpanded = true;
+                        $scope.productoDataCollapse[expandedTableRowIndex] = true;
+                        setupProductoForEditing(index);
+                    }
 //
 //                    $scope.expandNewGeneroPanel = function () {
 //                        if (angular.isDefined($scope.genero)) {
@@ -97,33 +92,31 @@ angular.module('asm.genero', [])
 //                        selectedIndex = -1;
 //                    };
 //
-//                    $scope.selectTableRow = function (index) {
+                    $scope.selectTableRow = function (index) {
+
+                        if (tableRowExpanded === true) {
+                            if (expandedTableRowIndex === index) {
+                                $scope.cancel();
+                            } else {
+                                $scope.productoDataCollapse[expandedTableRowIndex] = false;
+                                $scope.cancel();
+                                expandRow(index);
+                            }
+                        } else {
+                            expandRow(index);
+                        }
+                        selectedIndex = index;
+                    };
 //
-//                        collapseNewPanels();
-//                        if (tableRowExpanded === true) {
-//                            if (expandedTableRowIndex === index) {
-//                                $scope.cancel();
-//                            } else {
-//                                $scope.generoDataCollapse[expandedTableRowIndex] = false;
-//                                $scope.cancel();
-//                                expandRow(index);
-//                            }
-//                        } else {
-//                            expandRow(index);
-//                        }
-//                        selectedIndex = index;
-//                    };
-//
-//                    $scope.cancel = function () {
-//                        collapseAllEditPanels();
-//                        $scope.genero = {};
-//                        $scope.producto = {};
-//                    };
+                    $scope.cancel = function () {
+                        collapseAllEditPanels();
+                        $scope.producto = {};
+                    };
 
 //                    $scope.genero = {};
-//                    $scope.producto = {};
-//                    $scope.generos = {list: []};
-//                    getGeneros();
+                    $scope.producto = {};
+                    $scope.productos = {list: []};
+                    getProductos();
 //                    collapseAllEditPanels();
 //                    $scope.saveGenero = saveGenero;
 //                    $scope.saveProducto = saveProducto;

@@ -1,0 +1,14 @@
+<form name="confirmationDialogForm" novalidate role="form" class="form">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title">{{confirmationModalData.dialogTitle}}</h1>
+        </div>
+        <div class="modal-body">
+            <p>{{confirmationModalData.dialogQuestion}}</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="accept()" ng-disabled="confirmationDialogForm.$invalid" required>Aceptar</button>
+            <button class="btn btn-primary" type="button" ng-click="cancel()">Cancelar</button>
+        </div>
+    </div>
+</form>

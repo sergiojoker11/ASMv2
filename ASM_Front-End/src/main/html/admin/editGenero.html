@@ -1,0 +1,21 @@
+<form id="newGeneroForm" name="editGeneroForm" novalidate role="form" class="form">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title">Editar producto</h1>
+        </div>
+        <div class="modal-body">
+            <div class="form-horizontal">
+                <div class="form-group" ng-class="{ 'has-error has-feedback': isInvalidUserInput(editGeneroForm.name)}">
+                    <label for="generoNombre" class="col-sm-3 control-label">Nombre del género</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="generoNombre" id="generoNombre" class="form-control" ng-model="genero.name" required/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" ng-disabled="editGeneroForm.$invalid" class="btn btn-primary" ng-click="saveGenero()">Guardar</button>
+            <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
+        </div>
+    </div>
+</form>

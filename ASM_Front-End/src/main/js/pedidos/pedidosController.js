@@ -16,7 +16,7 @@ angular.module('asm.pedidosController', [])
                         .then(successHandler, partialCloseDialog);
             }
             
-            function openDownloadStaticDataDialog() {
+            function openEntrarDialog() {
                 openDialog('pedidos/login.html', 'loginController', $scope, setPromise, angular.noop());
             }
             
@@ -32,7 +32,7 @@ angular.module('asm.pedidosController', [])
                 return authenticationService.logout();
             }
             
-            $scope.openDownloadStaticDataDialog = openDownloadStaticDataDialog;
+            $scope.openEntrarDialog = openEntrarDialog;
             $scope.getEntrarButtonText = getEntrarButtonText;
             $scope.isAuthenticated = authenticationService.isAuthenticated;
             $scope.isAdmin = authenticationService.isAdmin;

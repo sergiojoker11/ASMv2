@@ -17,4 +17,6 @@ public interface GeneroRepository extends Repository<Genero, Long> {
     List<Genero> findAll();
 
     Genero findOne(Long id);
+
+    void delete(Long id);
 }

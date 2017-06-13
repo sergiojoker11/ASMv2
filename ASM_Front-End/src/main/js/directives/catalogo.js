@@ -6,7 +6,7 @@ angular.module('asm.catalogo', [])
                 restrict: "E",
                 templateUrl: 'admin/catalogo.html',
                 replace: true,
-                controller: function ($log, $scope, catalogoService, Notification) {
+                controller: function ($log, $scope, catalogoService, Notification, modalDialogService) {
 
                     var selectedIndex;
                     var tableRowExpanded;
@@ -77,6 +77,34 @@ angular.module('asm.catalogo', [])
                         setupGeneroForEditing(index);
                     }
 
+                    function openDialog(view, controller, scope, setPromise, successHandler) {
+                        var partialCloseDialog = angular.bind(this, modalDialogService.closeDialog);
+                        modalDialogService.openModalInstance(view, controller, scope, setPromise)
+                                .then(successHandler, partialCloseDialog);
+                    }
+
+                    function openConfirmationModal(action, actionSuccessMessageKey) {
+                        modalDialogService.openModalInstance('utils/confirmationDialogView.html', 'confirmationDialogController', $scope).then(function () {
+                            action().then(function () {
+                                getGeneros();
+                                Notification.success(actionSuccessMessageKey);
+                            }, function () {
+                                Notification.error("No se ha podido eliminar el género. Si el error persiste, póngase en contacto con el administrador");
+                            });
+                        }, angular.noop);
+                    }
+
+                    function openEditGeneroModal(genero) {
+                        var promise = {genero: genero};
+                        openDialog('admin/editGenero.html', 'editGeneroController', $scope, promise, getGeneros);
+                    }
+
+                    function confirmDeletionModal() {
+                        $scope.confirmationModalData = modalDialogService.setUpConfirmationModal("Eliminar Género", "¿Realmente desea eliminar este género junto con todos sus productos y formatos?");
+                        var action = angular.bind(this, catalogoService.deleteGenero, $scope.genero);
+                        openConfirmationModal(action, 'El género ha sido eliminado, así como sus productos y formatos');
+                    }
+
                     $scope.expandNewGeneroPanel = function () {
                         if (angular.isDefined($scope.genero)) {
                             $scope.cancel();
@@ -125,10 +153,8 @@ angular.module('asm.catalogo', [])
                     $scope.saveGenero = saveGenero;
                     $scope.saveProducto = saveProducto;
                     $scope.isInvalidUserInput = isInvalidUserInput;
-                    $scope.print = function() {
-                        $log.debug("Funca");
-                    };
-
+                    $scope.openEditGeneroModal = openEditGeneroModal;
+                    $scope.confirmDeletionModal = confirmDeletionModal;
                 }
             };
 
