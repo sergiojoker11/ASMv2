@@ -27,7 +27,8 @@ var app = angular.module('app', [
     'asm.widthSource',
     'asm.passwordVerify',
     'asm.catalogo',
-    'asm.genero'
+    'asm.genero',
+    'ngFileUpload'
 ]);
 
 app.config(function ($locationProvider, $routeProvider, NotificationProvider) {

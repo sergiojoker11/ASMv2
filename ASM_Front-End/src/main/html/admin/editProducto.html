@@ -1,20 +1,33 @@
-<form id="newProductoForm" name="newProductoForm" novalidate role="form" class="form">
-    <div class="form-horizontal">
-        <div class="form-group" ng-class="{ 'has-error has-feedback': isInvalidUserInput(newProductoForm.nombre)}">
-            <label for="productoNombre" class="col-sm-3 control-label">Nombre del producto</label>
-            <div class="col-sm-9">
-                <input type="text" name="productoNombre" id="productoNombre" class="form-control" ng-model="producto.nombre" required/>
+<form id="editProductoForm" name="editProductoForm" novalidate role="form" class="form">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title">Editar Producto</h1>
+        </div>
+        <div class="modal-body">
+            <div class="form-horizontal">
+                <div class="form-group" ng-class="{ 'has-error has-feedback': isInvalidUserInput(editProductoForm.nombre)}">
+                    <label for="productoNombre" class="col-sm-3 control-label">Nombre del producto</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="productoNombre" id="productoNombre" class="form-control" ng-model="producto.nombre" required/>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error has-feedback': isInvalidUserInput(editProductoForm.imagen)}">
+                    <label for="productoImage" class="col-sm-3 control-label">Imagen</label>
+                    <div class="col-sm-9">
+                        <label ng-hide="producto.image" class="btn btn-default">
+                            Seleccionar<input type="file" ngf-select ng-model="producto.image" accept="image/*" ngf-max-size="2MB" name="productoImage" required/>
+                        </label>
+                        <button ng-show="producto.image" class="btn btn-default" ng-click="removeImage()">Eliminar</button>
+                        <i ng-hide="producto.image">&nbsp;No hay ninguna imagen seleccionada</i>
+                        <img ng-hide="producto.image" ngf-thumbnail="producto.image" class="image-displayer" alt="Imagen del producto"/><br/>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group" ng-class="{ 'has-error has-feedback': isInvalidUserInput(newProductoForm.genero)}">
-            <label for="generoProducto" class="col-sm-3 control-label">Género</label>
-            <div class="col-sm-9">
-                <select ng-model="producto.genero" ng-options="generoItem._links.genero.href as generoItem.name for generoItem in generos.list" id="rcc" name="generoProducto" class="form-control" required>
-                    <option value="">Selecciona Género</option>
-                </select>
-            </div>
+        <div class="modal-footer">
+            <button type="submit" ng-disabled="editProductoForm.$invalid" class="btn btn-primary" ng-click="updateProducto()">Guardar</button>
+            <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
+            <button class="btn btn-primary" ng-click="print()">Print</button>
         </div>
     </div>
-    <button type="submit" ng-disabled="newProductoForm.$invalid" class="btn btn-primary" ng-click="saveProducto()">Guardar</button>
-    <button class="btn btn-primary" ng-click="cancel()">Cancelar</button>
 </form>

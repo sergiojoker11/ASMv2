@@ -4,7 +4,7 @@ angular.module('asm.editGeneroController', [])
         .controller('editGeneroController', function ($scope, $log, catalogoService, Notification, $uibModalInstance, promise) {
             $log.debug("Estoy en editGeneroController", $scope);
 
-            function saveGenero() {
+            function updateGenero() {
                 catalogoService.updateGenero($scope.genero).then(function (response) {
                     $log.debug("Success genero", response);
                     Notification.success("El elemento se ha guardado correctamente");
@@ -26,5 +26,5 @@ angular.module('asm.editGeneroController', [])
             $scope.genero = angular.copy(promise.genero);
             $scope.cancel = cancel;
             $scope.isInvalidUserInput = isInvalidUserInput;
-            $scope.saveGenero = saveGenero;
+            $scope.updateGenero = updateGenero;
         });

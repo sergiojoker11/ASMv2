@@ -57,7 +57,6 @@ angular.module('asm.catalogo', [])
                     function saveProducto() {
                         catalogoService.saveProducto($scope.producto).then(function (response) {
                             $log.debug("Success producto", response);
-                            $scope.generos.list.push(response.data);
                             Notification.success("El elemento se ha guardado correctamente");
                             $scope.cancel();
                         }, function (error) {
@@ -94,12 +93,14 @@ angular.module('asm.catalogo', [])
                         }, angular.noop);
                     }
 
-                    function openEditGeneroModal(genero) {
-                        var promise = {genero: genero};
+                    function openEditGeneroModal(generoId) {
+                        setupGeneroForEditing(generoId);
+                        var promise = {genero: $scope.genero};
                         openDialog('admin/editGenero.html', 'editGeneroController', $scope, promise, getGeneros);
                     }
 
-                    function confirmDeletionModal() {
+                    function confirmGeneroDeletionModal(generoId) {
+                        setupGeneroForEditing(generoId);
                         $scope.confirmationModalData = modalDialogService.setUpConfirmationModal("Eliminar Género", "¿Realmente desea eliminar este género junto con todos sus productos y formatos?");
                         var action = angular.bind(this, catalogoService.deleteGenero, $scope.genero);
                         openConfirmationModal(action, 'El género ha sido eliminado, así como sus productos y formatos');
@@ -154,7 +155,7 @@ angular.module('asm.catalogo', [])
                     $scope.saveProducto = saveProducto;
                     $scope.isInvalidUserInput = isInvalidUserInput;
                     $scope.openEditGeneroModal = openEditGeneroModal;
-                    $scope.confirmDeletionModal = confirmDeletionModal;
+                    $scope.confirmGeneroDeletionModal = confirmGeneroDeletionModal;
                 }
             };
 

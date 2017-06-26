@@ -25,8 +25,8 @@
                     <tr ng-class-odd="'table-striped-odd-row'">
                         <td data-ng-click="selectTableRow($index)"><a href oncontextmenu="return false;">{{genero.name}}</a></td>
                         <td>
-                            <a href oncontextmenu="return false;" ng-click="openEditGeneroModal(genero)">Editar</a>
-                            <a href oncontextmenu="return false;" ng-click="confirmDeletionModal()">Eliminar</a>
+                            <a href oncontextmenu="return false;" ng-click="openEditGeneroModal($index)">Editar</a>
+                            <a href oncontextmenu="return false;" ng-click="confirmGeneroDeletionModal($index)">Eliminar</a>
                         </td>
                     </tr>
                     <tr data-ng-switch-when="true">
@@ -38,6 +38,7 @@
                     </tr>
                 </tbody>
             </table>
+            <p ng-hide="generos.list.length" class="text-center">No existen géneros</p>
         </div>
     </div>
 </div>

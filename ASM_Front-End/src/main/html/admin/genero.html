@@ -13,8 +13,8 @@
                         <span oncontextmenu="return false;">{{producto.nombre}}</span>
                     </td>
                     <td>
-                        <a href oncontextmenu="return false;" ng-click="print()">Editar</a>
-                        <a href oncontextmenu="return false;" ng-click="print()">Eliminar</a>
+                        <a href oncontextmenu="return false;" ng-click="openEditProductoModal($index)">Editar</a>
+                        <a href oncontextmenu="return false;" ng-click="confirmProductoDeletionModal($index)">Eliminar</a>
                     </td>
                 </tr>
             </tbody>
