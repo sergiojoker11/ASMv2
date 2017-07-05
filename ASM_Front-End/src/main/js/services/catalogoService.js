@@ -10,6 +10,10 @@ angular.module('asm.catalogoService', ['ngFileUpload'])
                 return $http.get(url);
             }
             
+            function getImageProducto(producto) {
+                return $http.get('http://localhost:8084/ASM_Back-End/productoes/'+producto.id+'/image', {responseType: 'arraybuffer'});
+            }
+            
             function saveGenero(genero) {
                 return $http.post('http://localhost:8084/ASM_Back-End/generoes/', genero);
             }
@@ -44,6 +48,7 @@ angular.module('asm.catalogoService', ['ngFileUpload'])
             return {
                 getGeneros: getGeneros,
                 getProductos: getProductos,
+                getImageProducto: getImageProducto,
                 saveGenero: saveGenero,
                 saveProducto: saveProducto,
                 updateGenero: updateGenero,

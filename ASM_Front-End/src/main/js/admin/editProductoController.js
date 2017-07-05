@@ -26,13 +26,14 @@ angular.module('asm.editProductoController', [])
                 $uibModalInstance.close();
             }
             
-            
+            catalogoService.getImageProducto($scope.producto).then(function (response) {
+                    $scope.producto.image = new Blob([response.data], {type: 'image/*'});
+                }, function (error) {
+                    $log.debug("error image producto", error);
+                });            
             $scope.producto = angular.copy(promise.producto);
             $scope.updateProducto = updateProducto;
             $scope.removeImage = removeImage;
             $scope.isInvalidUserInput = isInvalidUserInput;
             $scope.cancel = cancel;
-            $scope.print = function(){
-                $log.debug("editProductoController", $scope);
-            };
         });
