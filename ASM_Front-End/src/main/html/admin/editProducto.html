@@ -12,10 +12,10 @@
                     </div>
                 </div>
                 <div class="form-group" ng-class="{ 'has-error has-feedback': isInvalidUserInput(editProductoForm.imagen)}">
-                    <label for="productoImage" class="col-sm-3 control-label">Imagen</label>
+                    <label for="productoImage" class="col-sm-3 control-label">Imagen (5MB max)</label>
                     <div class="col-sm-9">
                         <label ng-hide="producto.image" class="btn btn-default">
-                            Seleccionar<input type="file" ngf-select ng-model="producto.image" accept="image/*" ngf-max-size="2MB" name="productoImage" required/>
+                            Seleccionar<input type="file" ngf-select ng-model="producto.image" accept="image/*" ngf-max-size="5MB" name="productoImage" required/>
                         </label>
                         <button ng-show="producto.image" class="btn btn-default" ng-click="removeImage()">Eliminar</button>
                         <i ng-hide="producto.image">&nbsp;No hay ninguna imagen seleccionada</i>
