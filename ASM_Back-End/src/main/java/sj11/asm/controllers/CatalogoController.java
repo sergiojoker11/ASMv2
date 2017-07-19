@@ -1,6 +1,7 @@
 package sj11.asm.controllers;
 
 import java.io.IOException;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,11 +46,13 @@ public class CatalogoController {
     }
 
     @RequestMapping(value = "productoes/updateProducto", method = RequestMethod.POST)
-    public ResponseEntity<?> updateProducto(@RequestParam MultipartFile image, @RequestParam Long id, @RequestParam String nombre) {
+    public ResponseEntity<?> updateProducto(@RequestParam Optional<MultipartFile> image, @RequestParam Long id, @RequestParam String nombre) {
         try {
             Producto productoFromDB = productoRepository.findOne(id);
             productoFromDB.setNombre(nombre);
-            productoFromDB.setImage(image.getBytes());
+            if (image.isPresent()) {
+                productoFromDB.setImage(image.get().getBytes());
+            }
             Producto productoUpdated = productoRepository.save(productoFromDB);
             return new ResponseEntity<>(productoUpdated, HttpStatus.OK);
         } catch (IOException ex) {

@@ -15,11 +15,11 @@
                     <label for="productoImage" class="col-sm-3 control-label">Imagen (5MB max)</label>
                     <div class="col-sm-9">
                         <label ng-hide="producto.image" class="btn btn-default">
-                            Seleccionar<input type="file" ngf-select ng-model="producto.image" accept="image/*" ngf-max-size="5MB" name="productoImage" required/>
+                            Seleccionar<input type="file" ngf-select ng-model="producto.image" accept="image/*" ngf-max-size="5MB" name="productoImage"/>
                         </label>
                         <button ng-show="producto.image" class="btn btn-default" ng-click="removeImage()">Eliminar</button>
                         <i ng-hide="producto.image">&nbsp;No hay ninguna imagen seleccionada</i>
-                        <img ng-hide="producto.image" ngf-thumbnail="producto.image" class="image-displayer" alt="Imagen del producto"/><br/>
+                        <img ng-hide="producto.image===undefined" ngf-thumbnail="producto.image" class="image-displayer" alt="Imagen del producto"/><br/>
                     </div>
                 </div>
             </div>
