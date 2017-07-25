@@ -32,6 +32,11 @@ angular.module('asm.pedidosController', [])
                 return authenticationService.logout();
             }
             
+            function loginWithCredentialsFromLocalStorageIfThereAre() {
+                authenticationService.loginWithCredentialsFromLocalStorageIfThereAre();
+            }
+            
+            loginWithCredentialsFromLocalStorageIfThereAre();
             $scope.openEntrarDialog = openEntrarDialog;
             $scope.getEntrarButtonText = getEntrarButtonText;
             $scope.isAuthenticated = authenticationService.isAuthenticated;

@@ -28,7 +28,8 @@ var app = angular.module('app', [
     'asm.passwordVerify',
     'asm.catalogo',
     'asm.genero',
-    'ngFileUpload'
+    'ngFileUpload',
+    'ngStorage'
 ]);
 
 app.config(function ($locationProvider, $routeProvider, NotificationProvider) {

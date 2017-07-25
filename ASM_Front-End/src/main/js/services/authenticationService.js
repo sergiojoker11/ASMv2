@@ -1,6 +1,6 @@
 'use strict';
 angular.module('asm.authenticationService', [])
-        .factory('authenticationService', function ($http, $rootScope, Notification) {
+        .factory('authenticationService', function ($http, $rootScope, Notification, $localStorage) {
 
             function authenticate(credentials) {
                 return $http.post('http://localhost:8084/ASM_Back-End/login', credentials);
@@ -13,16 +13,25 @@ angular.module('asm.authenticationService', [])
                         "email": user.email,
                         "admin": user.admin
                     };
+                $localStorage.user = $rootScope.user;
                 Notification.success('Bienvenido '+$rootScope.user.username+ ' !');
+            }
+            
+            function loginWithCredentialsFromLocalStorageIfThereAre() {
+                if (isAuthenticated()) {
+                    $rootScope.user = $localStorage.user;
+                }
             }
             
             function logout() {
                 $rootScope.user = undefined;
+                $localStorage.user = undefined;
             }
             
             function isAuthenticated() {
-                return angular.isDefined($rootScope.user);
+                return angular.isDefined($localStorage.user);
             }
+            
             function isAdmin() {
                 return angular.isDefined($rootScope.user) && $rootScope.user.admin;
             }
@@ -30,6 +39,7 @@ angular.module('asm.authenticationService', [])
             return {
                 authenticate: authenticate,
                 login: login,
+                loginWithCredentialsFromLocalStorageIfThereAre: loginWithCredentialsFromLocalStorageIfThereAre,
                 isAuthenticated: isAuthenticated,
                 isAdmin: isAdmin,
                 logout: logout
