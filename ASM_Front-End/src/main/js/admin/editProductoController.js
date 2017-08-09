@@ -2,6 +2,9 @@
 
 angular.module('asm.editProductoController', [])
         .controller('editProductoController', function ($log, $scope, Notification, catalogoService, $uibModalInstance, promise) {
+            
+            $scope.colors = ['Blue','Red'];
+            $scope.formato = {};
 
             function updateProducto() {
                 catalogoService.updateProducto($scope.producto).then(function (response) {
@@ -25,6 +28,20 @@ angular.module('asm.editProductoController', [])
             function cancel() {
                 $uibModalInstance.close();
             }
+            
+            function addFormato() {
+                $log.debug("$scope - addFormato", $scope);
+                $scope.producto.listaFormatos.push($scope.formato);
+                $scope.formato = {};
+            }
+            
+            function removeFormato(index) {
+                $scope.producto.listaFormatos.splice(index, 1);
+            }
+            
+            function isListaFormatosEmpty() {
+                return $scope.producto.listaFormatos.length === 0;
+            }
 
             catalogoService.getImageProducto($scope.producto).then(function (response) {
                 if (response.data.byteLength > 0) {
@@ -40,4 +57,7 @@ angular.module('asm.editProductoController', [])
             $scope.removeImage = removeImage;
             $scope.isInvalidUserInput = isInvalidUserInput;
             $scope.cancel = cancel;
+            $scope.addFormato = addFormato;
+            $scope.removeFormato = removeFormato;
+            $scope.isListaFormatosEmpty = isListaFormatosEmpty;
         });

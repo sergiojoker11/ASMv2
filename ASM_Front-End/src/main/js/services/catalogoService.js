@@ -28,7 +28,8 @@ angular.module('asm.catalogoService', ['ngFileUpload'])
                     data: {
                         id: producto.id,
                         nombre: producto.nombre,
-                        image: producto.image
+                        image: producto.image,
+                        listaFormatos: producto.listaFormatos
                     }
                 });
             }

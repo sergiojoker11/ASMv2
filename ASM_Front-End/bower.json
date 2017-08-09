@@ -21,7 +21,10 @@
     "angular-file-saver":"~1.1.2",
     "angular-input-modified":"~2.3.1",
     "angular-elastic": "2.5.1",
-    "angular-ui-notification": "~0.3.6"
+    "angular-ui-notification": "~0.3.6",
+    "angular-ui-select": "~0.19.8",
+    "angular-sanitize": "~1.6.4",
+    "angular-isolate-form":"~1.0.6"
   },
   "resolutions": {
     "angular": "~1.5.0",

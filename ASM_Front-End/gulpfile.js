@@ -44,6 +44,8 @@ var gulp = require('gulp'),
 var template_data_path = './src/main/config/config.json';
 var template_data = require(template_data_path);
 
+var srcBase = 'target/mergedSrc';
+
 var vendor_js_sources = [
     "bower_components/angular/angular.js",
     "bower_components/angular-route/angular-route.js",
@@ -60,10 +62,15 @@ var vendor_js_sources = [
     "bower_components/angular-file-saver/dist/angular-file-saver.bundle.js",
     "bower_components/angular-input-modified/dist/angular-input-modified.js",
     "bower_components/angular-elastic/elastic.js",
-    "bower_components/angular-ui-notification/dist/angular-ui-notification.js"
+    "bower_components/angular-ui-notification/dist/angular-ui-notification.js",
+    "bower_components/angular-ui-select/dist/select.js",
+    "bower_components/angular-sanitize/angular-sanitize.js",
+    "bower_components/angular-isolate-form/index.js"
 ];
 
-var srcBase = 'target/mergedSrc';
+var vendor_css_sources = [
+    srcBase + '/main/less/**/*.less'
+];
 
 var pre_compile_tasks = [];
 var compile_tasks = [];
@@ -86,7 +93,7 @@ function failBuild(err) {
 }
 
 compile_task('dev-compile-css', function () {
-    return gulp.src([srcBase + '/main/less/**/*.less'])
+    return gulp.src(vendor_css_sources)
         .pipe(plumber())
         .pipe(newer('target/gulp-dev-output/css/style.css'))
         .pipe(filter('style.less'))
@@ -98,7 +105,7 @@ compile_task('dev-compile-css', function () {
 });
 
 compile_task('compile-css', function () {
-    return gulp.src([srcBase + '/main/less/**/*.less'])
+    return gulp.src(vendor_css_sources)
         .pipe(plumber())
         .pipe(newer('target/gulp-dev-output/css/style.css'))
         .pipe(filter('style.less'))
