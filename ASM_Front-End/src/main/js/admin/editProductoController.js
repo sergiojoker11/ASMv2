@@ -3,7 +3,6 @@
 angular.module('asm.editProductoController', [])
         .controller('editProductoController', function ($log, $scope, Notification, catalogoService, $uibModalInstance, promise) {
             
-            $scope.colors = ['Blue','Red'];
             $scope.formato = {};
 
             function updateProducto() {
