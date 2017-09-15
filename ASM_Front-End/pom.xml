@@ -92,8 +92,8 @@
                             <goal>install-node-and-npm</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v0.10.26</nodeVersion>
-                            <npmVersion>1.4.3</npmVersion>
+                            <nodeVersion>v5.3.0</nodeVersion>
+                            <npmVersion>3.3.12</npmVersion>
                         </configuration>
                     </execution>
                     <execution>
