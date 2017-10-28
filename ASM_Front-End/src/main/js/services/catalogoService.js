@@ -27,7 +27,7 @@ angular.module('asm.catalogoService', ['ngFileUpload'])
                     url: 'http://localhost:8084/ASM_Back-End/productoes/updateProducto',
                     data: {
                         image: producto.image, 
-                        otherInfo : Upload.json({id: producto.id, nombre: producto.nombre, listaFormatos: producto.listaFormatos})
+                        producto : Upload.jsonBlob({id: producto.id, nombre: producto.nombre, listaFormatos: producto.listaFormatos})
                     }
                 });
             }

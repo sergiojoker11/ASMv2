@@ -5,13 +5,9 @@ import java.io.IOException;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import sj11.asm.entities.Genero;
 import sj11.asm.entities.Producto;
@@ -46,18 +42,13 @@ public class CatalogoController {
         return new ResponseEntity<>(generoUpdated, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "productoes/updateProducto", method = RequestMethod.POST, consumes = {"multipart/form-data"})
-    public ResponseEntity<?> updateProducto(@RequestParam Optional<MultipartFile> image, @RequestParam String otherInfo) {
-        ObjectMapper mapper = new ObjectMapper();
+    @RequestMapping(value = "productoes/updateProducto", method = RequestMethod.POST, consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<?> updateProducto(@RequestPart Optional<MultipartFile> image, @RequestPart Producto producto) {
         try {
-            Producto producto = mapper.readValue(otherInfo, Producto.class);
-            Producto productoFromDB = productoRepository.findOne(producto.getId());
-            productoFromDB.setNombre(producto.getNombre());
             if (image.isPresent()) {
-                productoFromDB.setImage(image.get().getBytes());
+                producto.setImage(image.get().getBytes());
             }
-            productoFromDB.setListaFormatos(producto.getListaFormatos());
-            Producto productoUpdated = productoRepository.save(productoFromDB);
+            Producto productoUpdated = productoRepository.save(producto);
             return new ResponseEntity<>(productoUpdated, HttpStatus.OK);
         } catch (IOException ex) {
             return new ResponseEntity<>("Hubo un error obteniendo los datos de la imagen", HttpStatus.INTERNAL_SERVER_ERROR);
