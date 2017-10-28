@@ -1,7 +1,7 @@
 package sj11.asm.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
-import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import sj11.asm.entities.Formato;
 import sj11.asm.entities.Genero;
 import sj11.asm.entities.Producto;
 import sj11.asm.repositories.GeneroRepository;
@@ -47,15 +46,17 @@ public class CatalogoController {
         return new ResponseEntity<>(generoUpdated, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "productoes/updateProducto", method = RequestMethod.POST)
-    public ResponseEntity<?> updateProducto(@RequestParam Optional<MultipartFile> image, @RequestParam Long id, @RequestParam String nombre, @RequestParam List<Formato> listaFormatos) {
+    @RequestMapping(value = "productoes/updateProducto", method = RequestMethod.POST, consumes = {"multipart/form-data"})
+    public ResponseEntity<?> updateProducto(@RequestParam Optional<MultipartFile> image, @RequestParam String otherInfo) {
+        ObjectMapper mapper = new ObjectMapper();
         try {
-            Producto productoFromDB = productoRepository.findOne(id);
-            productoFromDB.setNombre(nombre);
+            Producto producto = mapper.readValue(otherInfo, Producto.class);
+            Producto productoFromDB = productoRepository.findOne(producto.getId());
+            productoFromDB.setNombre(producto.getNombre());
             if (image.isPresent()) {
                 productoFromDB.setImage(image.get().getBytes());
             }
-            productoFromDB.setListaFormatos(listaFormatos);
+            productoFromDB.setListaFormatos(producto.getListaFormatos());
             Producto productoUpdated = productoRepository.save(productoFromDB);
             return new ResponseEntity<>(productoUpdated, HttpStatus.OK);
         } catch (IOException ex) {
