@@ -13,7 +13,7 @@ import sj11.asm.entities.User;
 @RepositoryRestResource
 public interface UserRepository extends Repository<User, Long> {
 
-    @Query(value = "SELECT * FROM USER user "
+    @Query(value = "SELECT * FROM user user "
             + "where user.username= BINARY ?1 "
             + "and user.password= BINARY ?2 ", nativeQuery = true)
     User findByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
