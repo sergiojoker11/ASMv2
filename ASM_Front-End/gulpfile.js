@@ -63,8 +63,6 @@ var vendor_js_sources = [
     "bower_components/angular-input-modified/dist/angular-input-modified.js",
     "bower_components/angular-elastic/elastic.js",
     "bower_components/angular-ui-notification/dist/angular-ui-notification.js",
-    "bower_components/angular-ui-select/dist/select.js",
-    "bower_components/angular-sanitize/angular-sanitize.js",
     "bower_components/angular-isolate-form/index.js"
 ];
 

@@ -29,9 +29,7 @@ var app = angular.module('app', [
     'asm.catalogo',
     'asm.genero',
     'ngFileUpload',
-    'ngStorage',
-    'ui.select',
-    'ngSanitize'
+    'ngStorage'
 ]);
 
 app.config(function ($locationProvider, $routeProvider, NotificationProvider) {
