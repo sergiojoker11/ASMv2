@@ -1,6 +1,6 @@
 'use strict';
 angular.module('asm.catalogoService', ['ngFileUpload'])
-        .factory('catalogoService', function ($http, Upload) {
+        .factory('catalogoService', function ($http, Upload, $log) {
             
             function getGeneros() {
                 return $http.get('http://localhost:8084/ASM_Back-End/generoes/');
@@ -19,7 +19,7 @@ angular.module('asm.catalogoService', ['ngFileUpload'])
             }
             
             function updateGenero(genero) {
-                return $http.post('http://localhost:8084/ASM_Back-End/generoes/updateGenero', genero);
+                return $http.put('http://localhost:8084/ASM_Back-End/generoes/'+ genero.id, genero);
             }
             
             function updateProducto(producto) {
