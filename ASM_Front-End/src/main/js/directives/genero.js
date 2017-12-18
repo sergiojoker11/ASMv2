@@ -12,9 +12,7 @@ angular.module('asm.genero', [])
                 controller: function ($log, $scope, catalogoService, Notification, modalDialogService) {
 
                     function getProductos() {
-                        $log.debug("Productossss", $scope);
                         catalogoService.getProductos($scope.genero._links.productosList.href).then(function (response) {
-                            $log.debug("Productossss", response);
                             $scope.productos.list = response.data._embedded.productoes;
                         }, function () {
                             Notification.error('Hubo un error cuando intentabamos mostrar el catalogo. Si el error persiste, póngase en contacto con el administrador');
@@ -38,7 +36,6 @@ angular.module('asm.genero', [])
 
                     function confirmProductoDeletionModal(productoId) {
                         setupProductoForEditing(productoId);
-                        $log.debug("++++++++", $scope);
                         $scope.confirmationModalData = modalDialogService.setUpConfirmationModal("Eliminar Producto", "¿Realmente desea eliminar este producto junto con todos sus formatos?");
                         var action = angular.bind(this, catalogoService.deleteProducto, $scope.producto);
                         openConfirmationModal(action, 'El producto ha sido eliminado, así como sus formatos');
@@ -62,8 +59,6 @@ angular.module('asm.genero', [])
                     getProductos();
                     $scope.openEditProductoModal = openEditProductoModal;
                     $scope.confirmProductoDeletionModal = confirmProductoDeletionModal;
-                    $log.debug("Estamos dentro chvules", $scope);
-
                 }
             };
 

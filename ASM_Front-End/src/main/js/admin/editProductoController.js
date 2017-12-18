@@ -6,7 +6,7 @@ angular.module('asm.editProductoController', [])
             $scope.formato = {};
 
             function updateProducto() {
-                catalogoService.updateProductoMetadata($scope.producto).then(function (response) {
+                catalogoService.updateProductoMetadata($scope.producto).then(function () {
                     catalogoService.updateProductoImage($scope.producto).then(function (response) {
                         $log.debug("Success producto", response);
                         Notification.success("El elemento se ha guardado correctamente");
@@ -34,7 +34,6 @@ angular.module('asm.editProductoController', [])
             }
             
             function addFormato() {
-                $log.debug("$scope - addFormato", $scope);
                 $scope.producto.listaFormatos.push($scope.formato);
                 $scope.formato = {};
             }
