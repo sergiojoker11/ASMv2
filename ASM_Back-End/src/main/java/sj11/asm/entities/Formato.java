@@ -24,7 +24,7 @@ public class Formato implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Integer cantidad;
+    private Float cantidad;
     private String unidadMedida;
     @ManyToOne
     private Producto producto;
@@ -48,11 +48,11 @@ public class Formato implements Serializable {
         this.producto = producto;
     }
 
-    public Integer getCantidad() {
+    public Float getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(Integer cantidad) {
+    public void setCantidad(Float cantidad) {
         this.cantidad = cantidad;
     }
 
