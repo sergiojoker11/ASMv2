@@ -49,7 +49,6 @@ angular.module('asm.genero', [])
 
                     function openEditProductoModal(productoId) {
                         setupProductoForEditing(productoId);
-                        $scope.producto.image = new File([$scope.producto.image], "image.jpg", {type: "image/*"});
                         var promise = {producto: $scope.producto};
                         openDialog('admin/editProducto.html', 'editProductoController', $scope, promise, getProductos);
                     }
