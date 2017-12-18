@@ -63,4 +63,13 @@ public class Formato implements Serializable {
     public void setUnidadMedida(String unidadMedida) {
         this.unidadMedida = unidadMedida;
     }
+
+    @Override
+    public String toString() {
+        return "Formato{" +
+                "id=" + id +
+                ", cantidad=" + cantidad +
+                ", unidadMedida='" + unidadMedida + '\'' +
+                '}';
+    }
 }

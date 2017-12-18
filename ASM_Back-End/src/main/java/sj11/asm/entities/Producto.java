@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sj11.asm.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -34,7 +29,7 @@ public class Producto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name = "producto_id")
     private List<Formato> listaFormatos;
     @Lob
@@ -123,6 +118,6 @@ public class Producto implements Serializable {
 
     @Override
     public String toString() {
-        return "Producto{" + "id=" + id + ", nombre=" + nombre + ", listaFormatos=" + listaFormatos + ", genero=" + genero + '}';
+        return "Producto{" + "id=" + id + ", nombre=" + nombre + ", listaFormatos=" + listaFormatos + '}';
     }
 }

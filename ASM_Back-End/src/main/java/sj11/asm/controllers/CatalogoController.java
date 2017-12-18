@@ -32,16 +32,19 @@ public class CatalogoController {
         this.productoRepository = productoRepository;
     }
 
-    @RequestMapping(value = "productoes/updateProducto", method = RequestMethod.POST, consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<?> updateProducto(@RequestPart Optional<MultipartFile> image, @RequestPart Producto producto) {
+    @RequestMapping(value = "productoes/{id}/image", method = RequestMethod.POST, consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<?> postProductoImage(@RequestPart Optional<MultipartFile> image, @PathVariable Long id) {
         try {
+            Producto productoFromDB = productoRepository.findOne(id);
             if (image.isPresent()) {
-                producto.setImage(image.get().getBytes());
+                productoFromDB.setImage(image.get().getBytes());
+            } else {
+                productoFromDB.setImage(null);
             }
-            Producto productoUpdated = productoRepository.save(producto);
+            Producto productoUpdated = productoRepository.save(productoFromDB);
             return new ResponseEntity<>(productoUpdated, HttpStatus.OK);
         } catch (IOException ex) {
-            return new ResponseEntity<>("Hubo un error obteniendo los datos de la imagen", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Hubo un error procesando los datos de la imagen", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

@@ -6,12 +6,17 @@ angular.module('asm.editProductoController', [])
             $scope.formato = {};
 
             function updateProducto() {
-                catalogoService.updateProducto($scope.producto).then(function (response) {
-                    $log.debug("Success producto", response);
-                    Notification.success("El elemento se ha guardado correctamente");
-                    $scope.cancel();
+                catalogoService.updateProductoMetadata($scope.producto).then(function (response) {
+                    catalogoService.updateProductoImage($scope.producto).then(function (response) {
+                        $log.debug("Success producto", response);
+                        Notification.success("El elemento se ha guardado correctamente");
+                        $scope.cancel();
+                    }, function (error) {
+                        $log.debug("Error posteando producto imagen", error);
+                        Notification.error("No hemos podido guardar el elemento. Si el error persiste, póngase en contacto con el administrador");
+                    });
                 }, function (error) {
-                    $log.debug("error producto", error);
+                    $log.debug("Error posteando producto metadata", error);
                     Notification.error("No hemos podido guardar el elemento. Si el error persiste, póngase en contacto con el administrador");
                 });
             }
