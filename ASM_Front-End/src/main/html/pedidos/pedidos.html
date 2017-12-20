@@ -1,60 +1,58 @@
-<div class="row">
-    <div class="col-md-10">
-    </div>
-    <div class="col-md-2 pull-right">
-        <div ng-show="isAuthenticated()" class="btn-group" uib-dropdown keyboard-nav>
-            <button id="loginButton" type="button" class="btn btn-primary" uib-dropdown-toggle>
-                {{getEntrarButtonText()}}&nbsp<span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-left" uib-dropdown-menu role="menu" aria-labelledby="loginButton">
-                <li role="menuitem"><a>Mi perfil</a></li>
-                <li role="menuitem"><a>Mis facturas</a></li>
-                <li role="menuitem" ng-show="isAdmin()"><a href="/admin">Administración</a></li>
-                <li class="divider"></li>
-                <li role="menuitem"><a ng-click="logout()">Salir</a></li>
-            </ul>
-        </div>
-        <button ng-hide="isAuthenticated()" type="button" class="btn btn-primary" ng-click="openEntrarDialog()">
-            <span>{{getEntrarButtonText()}}</span>
+<div class="pull-right">
+    <div ng-show="isAuthenticated()" class="btn-group" uib-dropdown keyboard-nav>
+        <button id="loginButton" type="button" class="btn btn-primary" uib-dropdown-toggle>
+            {{getEntrarButtonText()}}&nbsp<span class="caret"></span>
         </button>
+        <ul class="dropdown-menu dropdown-menu-left" uib-dropdown-menu role="menu" aria-labelledby="loginButton">
+            <li role="menuitem"><a>Mi perfil</a></li>
+            <li role="menuitem"><a>Mis facturas</a></li>
+            <li role="menuitem" ng-show="isAdmin()"><a href="/admin">Administración</a></li>
+            <li class="divider"></li>
+            <li role="menuitem"><a ng-click="logout()">Salir</a></li>
+        </ul>
     </div>
+    <button ng-hide="isAuthenticated()" type="button" class="btn btn-primary" ng-click="openEntrarDialog()">
+        <span>{{getEntrarButtonText()}}</span>
+    </button>
 </div>
 <h3>Haga su pedido</h3>
-<uib-progressbar class="progress-striped active" type="success">0 %</uib-progressbar>
-<form name="haga-su-pedido" novalidate role="form" class="form">
-    <uib-accordion>
-        <div uib-accordion-group class="panel-default" ng-repeat="genero in generos.list">
-            <uib-accordion-heading>
-                <span ng-click="getProductosByGenero(genero._links.productosList.href)">{{genero.name}}</span>
-            </uib-accordion-heading>
-            <uib-accordion close-others="false">
-                <div uib-accordion-group class="panel-default" ng-repeat="producto in productos.list">
-                    <uib-accordion-heading>
-                        <span ng-click="initializePedidoByFormatos(producto.listaFormatos)">{{producto.nombre}}</span>
-                    </uib-accordion-heading>
-                    <table class="table table-striped">
-                        <tbody ng-repeat="formato in producto.listaFormatos">
-                        <tr>
-                            <td>
-                                <span oncontextmenu="return false;">{{formato.cantidad}}&nbsp;{{formato.unidadMedida}}</span>
-                            </td>
-                            <td>
-                                <button ng-click="addOne(formato.id)" class="btn btn-default"><span
-                                        class="glyphicon glyphicon-plus"></span></button>
-                                <input type="number" class="form-control" ng-model="pedido[formato.id]" min="0"
-                                       ng-disabled="true"/>
-                                <button ng-click="substractOne(formato.id)" class="btn btn-default"
-                                        ng-disabled="isZeroOrLess(pedido[formato.id])"><span
-                                        class="glyphicon glyphicon-minus"></span></button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </uib-accordion>
-        </div>
-    </uib-accordion>
-    <button type="button" ng-disabled="isPedidoInvalid()" class="btn btn-primary pull-right" ng-click="next()">
-        Siguiente
-    </button>
-</form>
+<div class="container-fluid">
+    <uib-progressbar class="progress-striped active" type="success">0 %</uib-progressbar>
+    <form name="haga-su-pedido" novalidate role="form" class="form">
+        <uib-accordion>
+            <div uib-accordion-group class="panel-default" ng-repeat="genero in generos.list">
+                <uib-accordion-heading>
+                    <span ng-click="getProductosByGenero(genero._links.productosList.href)">{{genero.name}}</span>
+                </uib-accordion-heading>
+                <uib-accordion close-others="false">
+                    <div uib-accordion-group class="panel-default" ng-repeat="producto in productos.list">
+                        <uib-accordion-heading>
+                            <span ng-click="initializePedidoByFormatos(producto.listaFormatos)">{{producto.nombre}}</span>
+                        </uib-accordion-heading>
+                        <table class="table table-striped">
+                            <tbody ng-repeat="formato in producto.listaFormatos">
+                            <tr>
+                                <td>
+                                    <span oncontextmenu="return false;">{{formato.cantidad}}&nbsp;{{formato.unidadMedida}}</span>
+                                </td>
+                                <td>
+                                    <button ng-click="addOne(formato.id)" class="btn btn-default"><span
+                                            class="glyphicon glyphicon-plus"></span></button>
+                                    <input type="number" class="form-control" ng-model="pedido[formato.id]" min="0"
+                                           ng-disabled="true"/>
+                                    <button ng-click="substractOne(formato.id)" class="btn btn-default"
+                                            ng-disabled="isZeroOrLess(pedido[formato.id])"><span
+                                            class="glyphicon glyphicon-minus"></span></button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </uib-accordion>
+            </div>
+        </uib-accordion>
+        <button type="button" ng-disabled="isPedidoInvalid()" class="btn btn-primary pull-right" ng-click="next()">
+            Siguiente
+        </button>
+    </form>
+</div>
