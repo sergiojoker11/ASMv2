@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <uib-progressbar class="progress-striped active" type="success">33 %</uib-progressbar>
     <form name="detallesPedidoForm" novalidate role="form" class="form-horizontal">
-        <h4>Detalles del cliente:</h4>
+        <h4 id="detallescliente">Detalles del cliente:</h4>
         <div class="form-group" ng-class="{'has-error has-feedback': isInvalidUserInput(detallesPedidoForm.nombre)}">
             <label for="nombre" class="col-sm-3 control-label">Nombre</label>
             <div class="col-sm-9">
@@ -28,7 +28,7 @@
                 <input type="text" name="phone2" id="phone2" class="form-control" ng-model="pedido.user.phone2"/>
             </div>
         </div>
-        <h4>Entrega y comentarios:</h4>
+        <h4 id="entregacomentarios">Entrega y comentarios:</h4>
         <div class="form-group"
              ng-class="{'has-error has-feedback': isInvalidUserInput(detallesPedidoForm.deliveryAddress)}">
             <label for="deliveryAddress" class="col-sm-3 control-label">Dirección de entrega</label>

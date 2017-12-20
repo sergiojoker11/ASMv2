@@ -18,13 +18,17 @@ angular.module('asm.detallesPedidoController', [])
         }
 
         function initialize() {
-            if (angular.isDefined($sessionStorage.pedidoStep2)) {
-                $scope.pedido = $sessionStorage.pedidoStep2;
+            if (angular.isDefined($sessionStorage.pedidoStep1)) {
+                if (angular.isDefined($sessionStorage.pedidoStep2)) {
+                    $scope.pedido = $sessionStorage.pedidoStep2;
+                } else {
+                    $scope.pedido = {};
+                    setDatePickerParams();
+                }
+                $scope.pedido.user = authenticationService.getUserDetails();
             } else {
-                $scope.pedido = {};
-                setDatePickerParams();
+                $location.path("/pedidos");
             }
-            $scope.pedido.user = authenticationService.getUserDetails();
         }
 
         $scope.isInvalidUserInput = isInvalidUserInput;

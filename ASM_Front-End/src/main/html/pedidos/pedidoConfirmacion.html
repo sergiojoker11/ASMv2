@@ -1,4 +1,28 @@
-<h3>Estamos en pedido confirmacion</h3>
-<button type="button" ng-click="print()">
-    PRINT
-</button>
+<h3>Confirmación del pedido</h3>
+<uib-progressbar class="progress-striped active" type="success">66 %</uib-progressbar>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-8"><h4>Resumen del pedido:</h4></div>
+        <div class="col-lg-4"><a href="/pedidos#hagasupedido" class="btn btn-default">Cambiar</a></div>
+    </div>
+    <div class="row">
+    </div>
+    <div class="row">
+        <div class="col-lg-8"><h4>Datos del cliente:</h4></div>
+        <div class="col-lg-4"><a href="/pedidos/detalles#detallescliente" class="btn btn-default">Cambiar</a></div>
+    </div>
+    <div class="row">
+    </div>
+    <div class="row">
+        <div class="col-lg-8"><h4>Entrega y comentarios:</h4></div>
+        <div class="col-lg-4"><a href="/pedidos/detalles#entregacomentarios" class="btn btn-default">Cambiar</a></div>
+    </div>
+    <div class="row">
+    </div>
+    <button type="button" ng-click="print()">
+        PRINT
+    </button>
+    <button type="button" class="btn btn-primary pull-right" ng-click="confirm()">
+        Confirmar
+    </button>
+</div>
