@@ -17,6 +17,7 @@ var app = angular.module('app', [
     'asm.editGeneroController',
     'asm.editProductoController',
     'asm.confirmationDialogController',
+    'asm.detallesPedidoController',
     //Services
     'asm.productosService',
     'asm.userService',
@@ -57,6 +58,10 @@ app.config(function ($locationProvider, $routeProvider, NotificationProvider) {
             .when('/pedidos', {
                 templateUrl: 'pedidos/pedidos.html',
                 controller: 'pedidosController'
+            })
+            .when('/pedidos/detalles', {
+                templateUrl: 'pedidos/detallesPedido.html',
+                controller: 'detallesPedidoController'
             })
             .when('/panelControl', {
                 templateUrl: 'panelControl/panelControl.html',

@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Aceitunas Sanchez Montes</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <base href="/" />
-        <%= style_block %>
-    </head>
-    <body ng-app="app" ng-controller="accionesMenuController" width-source>
-        <div id="wrapper" ng-class="{'active': menuMostrado}">
-            <!-- Sidebar -->
-            <div id="sidebar-wrapper" ng-include="'menu/leftMenu.html'" ng-cloak class="ng-cloak"></div>
-            <!-- Page content -->
-            <div id="page-content-wrapper">
-                <div class="header-container" ng-include="'menu/header.html'"></div>
-                <div class="content-container">
-                    <div ng-view ng-cloak class="ng-cloak"></div>
-                    <div ng-include="'menu/footer.html'"></div>
-                </div>
-            </div>
+<head>
+    <title>Aceitunas Sanchez Montes</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/"/>
+    <%= style_block %>
+</head>
+<body ng-app="app" ng-controller="accionesMenuController" width-source>
+<div id="wrapper" ng-class="{'active': menuMostrado}">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper" ng-include="'menu/leftMenu.html'" ng-cloak class="ng-cloak"></div>
+    <!-- Page content -->
+    <div id="page-content-wrapper">
+        <div class="header-container" ng-include="'menu/header.html'"></div>
+        <div class="container-fluid">
+            <div ng-view ng-cloak class="ng-cloak"></div>
+            <div ng-include="'menu/footer.html'"></div>
         </div>
-        <%= script_block %>
-    </body>
+    </div>
+</div>
+<%= script_block %>
+</body>
 </html>
