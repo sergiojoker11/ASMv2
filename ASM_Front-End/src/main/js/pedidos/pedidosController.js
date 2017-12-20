@@ -91,7 +91,7 @@ angular.module('asm.pedidosController', [])
 
         function next() {
             cleanPedido();
-            $sessionStorage.pedido = $scope.pedido;
+            $sessionStorage.pedidoStep1 = $scope.pedido;
             if (isPedidoInvalid()) {
                 $route.reload();
             } else {
@@ -103,8 +103,8 @@ angular.module('asm.pedidosController', [])
             getGeneros();
             $scope.generos = {list: []};
             $scope.productos = {list: []};
-            if (angular.isDefined($sessionStorage.pedido)) {
-                $scope.pedido = $sessionStorage.pedido;
+            if (angular.isDefined($sessionStorage.pedidoStep1)) {
+                $scope.pedido = $sessionStorage.pedidoStep1;
             } else {
                 $scope.pedido = {};
             }

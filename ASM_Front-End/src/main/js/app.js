@@ -18,6 +18,7 @@ var app = angular.module('app', [
     'asm.editProductoController',
     'asm.confirmationDialogController',
     'asm.detallesPedidoController',
+    'asm.pedidoConfirmacionController',
     //Services
     'asm.productosService',
     'asm.userService',
@@ -29,56 +30,62 @@ var app = angular.module('app', [
     'asm.passwordVerify',
     'asm.catalogo',
     'asm.genero',
+    'asm.datepicker',
     'ngFileUpload',
-    'ngStorage'
+    'ngStorage',
+    'monospaced.elastic'
 ]);
 
 app.config(function ($locationProvider, $routeProvider, NotificationProvider) {
     $routeProvider
-            .when('/', {
-                templateUrl: 'inicio/inicio.html',
-                controller: 'inicioController'
-            })
-            .when('/productos', {
-                templateUrl: 'productos/productos.html',
-                controller: 'productosController'
-            })
-            .when('/dondeEstamos', {
-                templateUrl: 'dondeEstamos/dondeEstamos.html'
-            })
-            .when('/historiaAsm', {
-                templateUrl: 'historiaAsm/historiaAsm.html'
-            })
-            .when('/historiaOlivo', {
-                templateUrl: 'historiaOlivo/historiaOlivo.html'
-            })
-            .when('/contacto', {
-                templateUrl: 'contacto/contacto.html'
-            })
-            .when('/pedidos', {
-                templateUrl: 'pedidos/pedidos.html',
-                controller: 'pedidosController'
-            })
-            .when('/pedidos/detalles', {
-                templateUrl: 'pedidos/detallesPedido.html',
-                controller: 'detallesPedidoController'
-            })
-            .when('/panelControl', {
-                templateUrl: 'panelControl/panelControl.html',
-                controller: 'panelControlController'
-            })
-            .when('/admin', {
-                templateUrl: 'admin/admin.html',
-                controller: 'adminController'
-            })
-            .otherwise({redirectTo: '/'});
+        .when('/', {
+            templateUrl: 'inicio/inicio.html',
+            controller: 'inicioController'
+        })
+        .when('/productos', {
+            templateUrl: 'productos/productos.html',
+            controller: 'productosController'
+        })
+        .when('/dondeEstamos', {
+            templateUrl: 'dondeEstamos/dondeEstamos.html'
+        })
+        .when('/historiaAsm', {
+            templateUrl: 'historiaAsm/historiaAsm.html'
+        })
+        .when('/historiaOlivo', {
+            templateUrl: 'historiaOlivo/historiaOlivo.html'
+        })
+        .when('/contacto', {
+            templateUrl: 'contacto/contacto.html'
+        })
+        .when('/pedidos', {
+            templateUrl: 'pedidos/pedidos.html',
+            controller: 'pedidosController'
+        })
+        .when('/pedidos/detalles', {
+            templateUrl: 'pedidos/detallesPedido.html',
+            controller: 'detallesPedidoController'
+        })
+        .when('/pedidos/detalles/confirmacion', {
+            templateUrl: 'pedidos/pedidoConfirmacion.html',
+            controller: 'pedidoConfirmacionController'
+        })
+        .when('/panelControl', {
+            templateUrl: 'panelControl/panelControl.html',
+            controller: 'panelControlController'
+        })
+        .when('/admin', {
+            templateUrl: 'admin/admin.html',
+            controller: 'adminController'
+        })
+        .otherwise({redirectTo: '/'});
     // enable html5Mode for pushstate ('#'-less URLs)
     $locationProvider.html5Mode(true);
     NotificationProvider.setOptions({
-            delay: 8000,
-            startTop: 10,
-            startRight: 10,
-            positionX: 'center',
-            positionY: 'bottom'
-        });
+        delay: 8000,
+        startTop: 10,
+        startRight: 10,
+        positionX: 'center',
+        positionY: 'bottom'
+    });
 });

@@ -1,2 +1,67 @@
-<h1>Detalles pedido Controller</h1>
-<button ng-click="print()">PRINTTTT</button>
+<h3>Detalles del pedido</h3>
+<div class="container-fluid">
+    <uib-progressbar class="progress-striped active" type="success">33 %</uib-progressbar>
+    <form name="detallesPedidoForm" novalidate role="form" class="form-horizontal">
+        <h4>Detalles del cliente:</h4>
+        <div class="form-group" ng-class="{'has-error has-feedback': isInvalidUserInput(detallesPedidoForm.nombre)}">
+            <label for="nombre" class="col-sm-3 control-label">Nombre</label>
+            <div class="col-sm-9">
+                <input type="text" name="nombre" id="nombre" class="form-control" ng-model="pedido.user.nombre"
+                       required/>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error has-feedback': isInvalidUserInput(detallesPedidoForm.email)}">
+            <label for="email" class="col-sm-3 control-label">Email</label>
+            <div class="col-sm-9">
+                <input type="text" name="email" id="email" class="form-control" ng-model="pedido.user.email" required/>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error has-feedback': isInvalidUserInput(detallesPedidoForm.phone)}">
+            <label for="phone" class="col-sm-3 control-label">Teléfono</label>
+            <div class="col-sm-9">
+                <input type="text" name="phone" id="phone" class="form-control" ng-model="pedido.user.phone" required/>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error has-feedback': isInvalidUserInput(detallesPedidoForm.phone2)}">
+            <label for="phone2" class="col-sm-3 control-label">Teléfono alternativo</label>
+            <div class="col-sm-9">
+                <input type="text" name="phone2" id="phone2" class="form-control" ng-model="pedido.user.phone2"/>
+            </div>
+        </div>
+        <h4>Entrega y comentarios:</h4>
+        <div class="form-group"
+             ng-class="{'has-error has-feedback': isInvalidUserInput(detallesPedidoForm.deliveryAddress)}">
+            <label for="deliveryAddress" class="col-sm-3 control-label">Dirección de entrega</label>
+            <div class="col-sm-9">
+                <input type="text" name="deliveryAddress" id="deliveryAddress" class="form-control"
+                       ng-model="pedido.deliveryAddress" required/>
+            </div>
+        </div>
+        <div class="form-group"
+             ng-class="{'has-error has-feedback': isInvalidUserInput(detallesPedidoForm.date)}">
+            <label for="date" class="col-sm-3 control-label">Fecha de entrega</label>
+            <div class="col-sm-9">
+                <date-picker name="date" id="date" ng-model="pedido.date" min-date="minDate"
+                             datepicker-options="dateOptions" ng-readonly="true" ng-required="true"></date-picker>
+            </div>
+        </div>
+        <div class="form-group"
+             ng-class="{'has-error has-feedback': isInvalidUserInput(detallesPedidoForm.date)}">
+            <label for="time" class="col-sm-3 control-label">Hora de entrega</label>
+            <div class="col-sm-9">
+                <div uib-timepicker name="time" id="time" ng-model="pedido.date" show-meridian="false" required></div>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error has-feedback': isInvalidUserInput(detallesPedidoForm.comments)}">
+            <label for="comments" class="col-sm-3 control-label">Comentarios</label>
+            <div class="col-sm-9">
+                <textarea msd-elastic name="comments" id="comments" class="form-control" ng-model="pedido.comments"
+                          placeholder="Aquí puede escribir cualquier comentario en relación al pedido"></textarea>
+            </div>
+        </div>
+        <button type="button" ng-disabled="detallesPedidoForm.$invalid" class="btn btn-primary pull-right"
+                ng-click="next()">
+            Siguiente
+        </button>
+    </form>
+</div>
