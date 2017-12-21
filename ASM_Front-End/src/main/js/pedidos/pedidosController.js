@@ -35,40 +35,24 @@ angular.module('asm.pedidosController', [])
             authenticationService.loginWithCredentialsFromLocalStorageIfThereAre();
         }
 
-        function getGeneros() {
-            catalogoService.getGeneros().then(function (response) {
-                $scope.catalogo = response.data._embedded.generoes;
-            }, function () {
-                Notification.error('Hubo un error cuando intentabamos mostrar el catalogo. Si el error persiste, póngase en contacto con el administrador');
-            });
+        function isNegativeOrUndefined(value) {
+            return angular.isUndefined(value) || value < 0;
         }
 
-        function getProductosByGenero(genero) {
-            catalogoService.getProductos(genero._links.productosList.href).then(function (response) {
-                genero.productosList = response.data._embedded.productoes;
-            }, function () {
-                Notification.error('Hubo un error cuando intentabamos mostrar el catalogo. Si el error persiste, póngase en contacto con el administrador');
-            });
-        }
-
-        function initializePedidoByFormatos(formatosList) {
-            angular.forEach(formatosList, function (formato) {
-                if (angular.isUndefined($scope.pedido[formato.id])) {
-                    $scope.pedido[formato.id] = 0;
-                }
-            });
-        }
-
-        function addOne(formatoId) {
-            $scope.pedido[formatoId]++;
-        }
-
-        function substractOne(formatoId) {
-            $scope.pedido[formatoId]--;
-        }
-
-        function isZeroOrLess(value) {
+        function isZero(value) {
             return value === 0;
+        }
+
+        function isAnyPedidoItemUndefinedOrNegative() {
+            return Object.values($scope.pedido).some(isNegativeOrUndefined);
+        }
+
+        function areAllPedidoItemsZero() {
+            return Object.values($scope.pedido).every(isZero);
+        }
+
+        function isPedidoInvalid() {
+            return angular.equals($scope.pedido, {}) || isAnyPedidoItemUndefinedOrNegative() || areAllPedidoItemsZero();
         }
 
         function cleanPedido() {
@@ -77,16 +61,6 @@ angular.module('asm.pedidosController', [])
                     delete $scope.pedido[key];
                 }
             });
-        }
-
-        function areAllPedidoItemsZero() {
-            return Object.keys($scope.pedido).every(function (k) {
-                return isZeroOrLess($scope.pedido[k]);
-            });
-        }
-
-        function isPedidoInvalid() {
-            return angular.equals($scope.pedido, {}) || areAllPedidoItemsZero();
         }
 
         function next() {
@@ -101,12 +75,9 @@ angular.module('asm.pedidosController', [])
         }
 
         function initialize() {
-            getGeneros();
-            if (angular.isDefined($sessionStorage.pedidoStep1)) {
-                $scope.pedido = $sessionStorage.pedidoStep1;
-            } else {
-                $scope.pedido = {};
-            }
+            $scope.catalogo = {};
+            $scope.pedido = {};
+            $scope.mode = "edit";
         }
 
         loginWithCredentialsFromLocalStorageIfThereAre();
@@ -115,12 +86,8 @@ angular.module('asm.pedidosController', [])
         $scope.isAuthenticated = authenticationService.isAuthenticated;
         $scope.isAdmin = authenticationService.isAdmin;
         $scope.logout = logout;
-        $scope.getProductosByGenero = getProductosByGenero;
-        $scope.addOne = addOne;
-        $scope.substractOne = substractOne;
-        $scope.isZeroOrLess = isZeroOrLess;
+        $scope.isZeroOrLess = isNegativeOrUndefined;
         $scope.isPedidoInvalid = isPedidoInvalid;
-        $scope.initializePedidoByFormatos = initializePedidoByFormatos;
         $scope.next = next;
         initialize();
     });

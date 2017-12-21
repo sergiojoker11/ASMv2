@@ -31,6 +31,7 @@ var app = angular.module('app', [
     'asm.catalogo',
     'asm.genero',
     'asm.datepicker',
+    'asm.catalogoPedido',
     'ngFileUpload',
     'ngStorage',
     'monospaced.elastic'
