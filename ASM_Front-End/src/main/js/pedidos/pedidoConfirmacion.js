@@ -7,6 +7,7 @@ angular.module('asm.pedidoConfirmacionController', [])
         function confirm(){
             $log.debug("STEP 1", $sessionStorage.pedidoStep1);
             $log.debug("STEP 2", $sessionStorage.pedidoStep2);
+            $log.debug("CATALOGO", $sessionStorage.catalogo);
         }
 
         function getFormatosToDisplayFromSessionStorageStep1() {

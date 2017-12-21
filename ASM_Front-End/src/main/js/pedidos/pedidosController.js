@@ -37,15 +37,15 @@ angular.module('asm.pedidosController', [])
 
         function getGeneros() {
             catalogoService.getGeneros().then(function (response) {
-                $scope.generos.list = response.data._embedded.generoes;
+                $scope.catalogo = response.data._embedded.generoes;
             }, function () {
                 Notification.error('Hubo un error cuando intentabamos mostrar el catalogo. Si el error persiste, póngase en contacto con el administrador');
             });
         }
 
-        function getProductosByGenero(link) {
-            catalogoService.getProductos(link).then(function (response) {
-                $scope.productos.list = response.data._embedded.productoes;
+        function getProductosByGenero(genero) {
+            catalogoService.getProductos(genero._links.productosList.href).then(function (response) {
+                genero.productosList = response.data._embedded.productoes;
             }, function () {
                 Notification.error('Hubo un error cuando intentabamos mostrar el catalogo. Si el error persiste, póngase en contacto con el administrador');
             });
@@ -95,14 +95,13 @@ angular.module('asm.pedidosController', [])
             if (isPedidoInvalid()) {
                 $route.reload();
             } else {
+                $sessionStorage.catalogo = $scope.catalogo;
                 $location.path("/pedidos/detalles");
             }
         }
 
         function initialize() {
             getGeneros();
-            $scope.generos = {list: []};
-            $scope.productos = {list: []};
             if (angular.isDefined($sessionStorage.pedidoStep1)) {
                 $scope.pedido = $sessionStorage.pedidoStep1;
             } else {
