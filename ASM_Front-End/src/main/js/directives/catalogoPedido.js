@@ -40,23 +40,21 @@ angular.module('asm.catalogoPedido', [])
                     return $scope.mode === 'edit';
                 }
 
-                function isReadOnly() {
+                function isReadonly() {
                     return $scope.mode === 'readonly';
                 }
 
                 function initialize() {
-                    getGeneros();
-                    if (angular.isDefined($sessionStorage.pedidoStep1)) {
-                        $scope.pedido = $sessionStorage.pedidoStep1;
-                    } else {
-                        $scope.pedido = {};
+                    $log.debug("DENTRO DIRECTIVA", $scope);
+                    if (isEditMode()) {
+                        getGeneros();
                     }
                 }
 
                 $scope.getProductosByGenero = getProductosByGenero;
                 $scope.initializePedidoByFormatos = initializePedidoByFormatos;
                 $scope.isEditMode = isEditMode;
-                $scope.isReadOnly = isReadOnly;
+                $scope.isReadonly = isReadonly;
                 initialize();
             }
         };

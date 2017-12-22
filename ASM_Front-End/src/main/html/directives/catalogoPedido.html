@@ -1,12 +1,14 @@
 <uib-accordion>
     <div uib-accordion-group class="panel-default" ng-repeat="genero in catalogo track by $index">
         <uib-accordion-heading>
-            <span ng-click="getProductosByGenero(genero)">{{genero.name}}</span>
+            <span ng-if="isEditMode()" ng-click="getProductosByGenero(genero)">{{genero.name}}</span>
+            <span ng-if="isReadonly()">{{genero.name}}</span>
         </uib-accordion-heading>
         <uib-accordion close-others="false">
             <div uib-accordion-group class="panel-default" ng-repeat="producto in genero.productosList">
                 <uib-accordion-heading>
-                    <span ng-click="initializePedidoByFormatos(producto.listaFormatos)">{{producto.nombre}}</span>
+                    <span ng-if="isEditMode()" ng-click="initializePedidoByFormatos(producto.listaFormatos)">{{producto.nombre}}</span>
+                    <span ng-if="isReadonly()">{{producto.nombre}}</span>
                 </uib-accordion-heading>
                 <table class="table table-striped">
                     <tbody ng-repeat="formato in producto.listaFormatos">
@@ -15,8 +17,10 @@
                             <span oncontextmenu="return false;">{{formato.cantidad}}&nbsp;{{formato.unidadMedida}}</span>
                         </td>
                         <td class="col-xs-9">
-                            <input type="number" class="form-control"
-                                   ng-model="pedido[formato.id]" min="0"
+                            <input ng-if="isEditMode()" type="number" class="form-control"
+                                   ng-model="pedido[formato.id]" min="0"/>
+                            <input ng-if="isReadonly()" type="number" class="form-control"
+                                   ng-model="formato.quantity" min="0"
                                    ng-disabled="isReadonly()"/>
                         </td>
                     </tr>

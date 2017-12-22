@@ -25,6 +25,7 @@ var app = angular.module('app', [
     'asm.authenticationService',
     'asm.modalDialogService',
     'asm.catalogoService',
+    'asm.pedidosService',
     //Directives
     'asm.widthSource',
     'asm.passwordVerify',
