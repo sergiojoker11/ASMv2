@@ -2,7 +2,7 @@
     <div class="form-group" ng-class="{'has-error has-feedback': isInvalidUserInput(userDetailsForm.nombre)}">
         <label for="nombre" class="col-sm-3 control-label">Nombre</label>
         <div class="col-sm-9">
-            <input type="text" name="nombre" id="nombre" class="form-control" ng-model="user.nombre"
+            <input type="text" name="nombre" id="nombre" class="form-control" ng-model="user.name"
                    ng-disabled="isReadonly()"
                    required/>
         </div>

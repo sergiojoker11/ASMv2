@@ -27,6 +27,7 @@ public class AuthenticationController {
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public ResponseEntity<?> login(@RequestBody User user) {
         User userFound = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
+        userFound.setPassword(null);
         if (userFound == null) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }

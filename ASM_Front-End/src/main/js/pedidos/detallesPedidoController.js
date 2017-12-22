@@ -24,9 +24,9 @@ angular.module('asm.detallesPedidoController', [])
                     $scope.pedido = $sessionStorage.pedidoStep2;
                 } else {
                     $scope.pedido = {};
+                    $scope.pedido.user = authenticationService.getUserDetails();
                     setDatePickerParams();
                 }
-                $scope.pedido.user = authenticationService.getUserDetails();
             } else {
                 $location.path("/pedidos");
             }

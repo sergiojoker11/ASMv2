@@ -7,12 +7,8 @@ angular.module('asm.authenticationService', [])
             }
             
             function login(user) {
-                $rootScope.user = {
-                        "id": user.id,
-                        "username": user.username,
-                        "email": user.email,
-                        "admin": user.admin
-                    };
+                delete user.password;
+                $rootScope.user = user;
                 $localStorage.user = $rootScope.user;
                 Notification.success('Bienvenido '+$rootScope.user.username+ ' !');
             }
