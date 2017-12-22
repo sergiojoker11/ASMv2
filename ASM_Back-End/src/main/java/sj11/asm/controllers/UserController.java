@@ -34,12 +34,12 @@ public class UserController {
     }
 
     @RequestMapping(value = "remindPassword", method = RequestMethod.POST)
-    public ResponseEntity<?> login(@RequestBody String userEmail) {
+    public ResponseEntity<?> remindPassword(@RequestBody String userEmail) {
         User user = userRepository.findByEmail(userEmail);
         Map<String, Object> templateContext = new HashMap<>();
         templateContext.put("user", user);
         try {
-            emailService.sendMail(user.getEmail(), "Aceitunas Sánchez Montes: solicitus de recordatorio de password", "passwordRemider.vm", templateContext);
+            emailService.sendMail(user.getEmail(), "Aceitunas Sánchez Montes: solicitud de recordatorio de password", "passwordRemider.vm", templateContext);
         } catch (RuntimeException runExc) {
             return new ResponseEntity<>(HttpStatus.OK);
         }
