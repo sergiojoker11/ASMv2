@@ -1,0 +1,32 @@
+<ng-form name="userDetailsForm" novalidate role="form" class="form-horizontal">
+    <div class="form-group" ng-class="{'has-error has-feedback': isInvalidUserInput(userDetailsForm.nombre)}">
+        <label for="nombre" class="col-sm-3 control-label">Nombre</label>
+        <div class="col-sm-9">
+            <input type="text" name="nombre" id="nombre" class="form-control" ng-model="user.nombre"
+                   ng-disabled="isReadonly()"
+                   required/>
+        </div>
+    </div>
+    <div class="form-group" ng-class="{'has-error has-feedback': isInvalidUserInput(userDetailsForm.email)}">
+        <label for="email" class="col-sm-3 control-label">Email</label>
+        <div class="col-sm-9">
+            <input type="text" name="email" id="email" class="form-control" ng-model="user.email"
+                   ng-disabled="isReadonly()" required/>
+        </div>
+    </div>
+    <div class="form-group" ng-class="{'has-error has-feedback': isInvalidUserInput(userDetailsForm.phone)}">
+        <label for="phone" class="col-sm-3 control-label">Teléfono</label>
+        <div class="col-sm-9">
+            <input type="text" name="phone" id="phone" class="form-control" ng-model="user.phone"
+                   ng-disabled="isReadonly()" required/>
+        </div>
+    </div>
+    <div ng-hide="isEmptyAndReadonly(user.phone2)" class="form-group"
+         ng-class="{'has-error has-feedback': isInvalidUserInput(userDetailsForm.phone2)}">
+        <label for="phone2" class="col-sm-3 control-label">Teléfono alternativo</label>
+        <div class="col-sm-9">
+            <input type="text" name="phone2" id="phone2" class="form-control" ng-model="user.phone2"
+                   ng-disabled="isReadonly()"/>
+        </div>
+    </div>
+</ng-form>

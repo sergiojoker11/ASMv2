@@ -3,31 +3,7 @@
     <uib-progressbar class="progress-striped active" type="success">33 %</uib-progressbar>
     <form name="detallesPedidoForm" novalidate role="form" class="form-horizontal">
         <h4 id="detallescliente">Detalles del cliente:</h4>
-        <div class="form-group" ng-class="{'has-error has-feedback': isInvalidUserInput(detallesPedidoForm.nombre)}">
-            <label for="nombre" class="col-sm-3 control-label">Nombre</label>
-            <div class="col-sm-9">
-                <input type="text" name="nombre" id="nombre" class="form-control" ng-model="pedido.user.nombre"
-                       required/>
-            </div>
-        </div>
-        <div class="form-group" ng-class="{'has-error has-feedback': isInvalidUserInput(detallesPedidoForm.email)}">
-            <label for="email" class="col-sm-3 control-label">Email</label>
-            <div class="col-sm-9">
-                <input type="text" name="email" id="email" class="form-control" ng-model="pedido.user.email" required/>
-            </div>
-        </div>
-        <div class="form-group" ng-class="{'has-error has-feedback': isInvalidUserInput(detallesPedidoForm.phone)}">
-            <label for="phone" class="col-sm-3 control-label">Teléfono</label>
-            <div class="col-sm-9">
-                <input type="text" name="phone" id="phone" class="form-control" ng-model="pedido.user.phone" required/>
-            </div>
-        </div>
-        <div class="form-group" ng-class="{'has-error has-feedback': isInvalidUserInput(detallesPedidoForm.phone2)}">
-            <label for="phone2" class="col-sm-3 control-label">Teléfono alternativo</label>
-            <div class="col-sm-9">
-                <input type="text" name="phone2" id="phone2" class="form-control" ng-model="pedido.user.phone2"/>
-            </div>
-        </div>
+        <user-details user="pedido.user" mode="mode"></user-details>
         <h4 id="entregacomentarios">Entrega y comentarios:</h4>
         <entrega-comentarios pedido="pedido" mode="mode"></entrega-comentarios>
         <button type="button" ng-disabled="detallesPedidoForm.$invalid" class="btn btn-primary pull-right"
