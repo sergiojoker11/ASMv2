@@ -4,13 +4,15 @@
             <span ng-if="isEditMode()" ng-click="getProductosByGenero(genero)">{{genero.name}}</span>
             <span ng-if="isReadonly()">{{genero.name}}</span>
         </uib-accordion-heading>
-        <uib-accordion close-others="false">
+        <p ng-hide="isThereAnyProducto(genero)" class="text-center">No existen productos en este género</p>
+        <uib-accordion close-others="false" ng-show="isThereAnyProducto(genero)">
             <div uib-accordion-group class="panel-default" ng-repeat="producto in genero.productosList">
                 <uib-accordion-heading>
                     <span ng-if="isEditMode()" ng-click="initializePedidoByFormatos(producto.listaFormatos)">{{producto.nombre}}</span>
                     <span ng-if="isReadonly()">{{producto.nombre}}</span>
                 </uib-accordion-heading>
-                <table class="table table-striped">
+                <p ng-hide="isThereAnyFormato(producto)" class="text-center">No existen formatos en este producto</p>
+                <table class="table table-striped" ng-show="isThereAnyFormato(producto)">
                     <tbody ng-repeat="formato in producto.listaFormatos">
                     <tr class="row">
                         <td class="col-xs-3">

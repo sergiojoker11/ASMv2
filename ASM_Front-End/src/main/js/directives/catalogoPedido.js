@@ -10,7 +10,7 @@ angular.module('asm.catalogoPedido', [])
                 pedido: '=',
                 mode: '='
             },
-            controller: function ($log, $scope, catalogoService, Notification, $sessionStorage) {
+            controller: function ($log, $scope, catalogoService, Notification) {
 
                 function getGeneros() {
                     catalogoService.getGeneros().then(function (response) {
@@ -44,6 +44,14 @@ angular.module('asm.catalogoPedido', [])
                     return $scope.mode === 'readonly';
                 }
 
+                function isThereAnyProducto(genero) {
+                    return angular.isDefined(genero.productosList) && genero.productosList.length > 0;
+                }
+
+                function isThereAnyFormato(producto) {
+                    return angular.isDefined(producto.listaFormatos) && producto.listaFormatos.length > 0;
+                }
+
                 function initialize() {
                     $log.debug("DENTRO DIRECTIVA", $scope);
                     if (isEditMode()) {
@@ -55,6 +63,8 @@ angular.module('asm.catalogoPedido', [])
                 $scope.initializePedidoByFormatos = initializePedidoByFormatos;
                 $scope.isEditMode = isEditMode;
                 $scope.isReadonly = isReadonly;
+                $scope.isThereAnyProducto = isThereAnyProducto;
+                $scope.isThereAnyFormato = isThereAnyFormato;
                 initialize();
             }
         };

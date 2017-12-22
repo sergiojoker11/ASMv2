@@ -79,32 +79,41 @@ angular.module('asm.pedidosController', [])
 
         function cleanCatalogoWithPedido(catalogo) {
             angular.forEach(catalogo, function (genero, generoIndex, generoList) {
-                angular.forEach(genero.productosList, function (producto, productoIndex, productosList) {
-                    angular.forEach(producto.listaFormatos, function (formato, formatoIndex, listaFormatos) {
-                        $log.debug("formato", formato);
-                        if (angular.isUndefined(formato.quantity) || formato.quantity === null) {
-                            $log.debug("formatoIndex", formatoIndex);
-                            listaFormatos.splice(formatoIndex, 1);
+                $log.debug("genero", genero);
+                if (angular.isDefined(genero.productosList) && genero.productosList.length > 0) {
+                    angular.forEach(genero.productosList, function (producto, productoIndex, productosList) {
+                        $log.debug("producto", producto);
+                        if (angular.isDefined(producto.listaFormatos) && producto.listaFormatos.length > 0) {
+                            angular.forEach(producto.listaFormatos, function (formato, formatoIndex, listaFormatos) {
+                                $log.debug("formato", formato);
+                                if (angular.isUndefined(formato.quantity) || formato.quantity === null || isZero(formato.quantity)) {
+                                    $log.debug("formato borrado", formato);
+                                    listaFormatos.splice(formatoIndex, 1);
+                                }
+                            });
+                        }
+                        if (angular.isUndefined(producto.listaFormatos) || producto.listaFormatos.length === 0) {
+                            $log.debug("producto borrado", producto);
+                            productosList.splice(productoIndex, 1);
                         }
                     });
-                    $log.debug("producto", producto);
-                    if (producto.listaFormatos.length === 0) {
-                        $log.debug("producto.listaFormatos", producto.listaFormatos);
-                        productosList.splice(productoIndex, 1);
-                    }
-                });
-                $log.debug("genero", genero);
-                if (angular.isUndefined(generoList[generoIndex].productosList) || generoList[generoIndex].productosList.length === 0) {
-                    $log.debug("generoList[generoIndex]", generoList[generoIndex]);
+                }
+                if (angular.isUndefined(genero.productosList) || genero.productosList.length === 0) {
+                    $log.debug("genero borrado", genero);
                     generoList.splice(generoIndex, 1);
                 }
             });
         }
 
+        function deepCopy(obj) {
+            return JSON.parse(JSON.stringify(obj));
+        }
+
         function mixCatalogoWithPedido(catalogo, pedido) {
-            applyPedidoToCatalogo(catalogo, pedido);
-            cleanCatalogoWithPedido(catalogo);
-            return catalogo;
+            var catalogoOutput = deepCopy(catalogo);
+            applyPedidoToCatalogo(catalogoOutput, pedido);
+            cleanCatalogoWithPedido(catalogoOutput);
+            return catalogoOutput;
         }
 
         function next() {
@@ -113,7 +122,10 @@ angular.module('asm.pedidosController', [])
             if (isPedidoInvalid()) {
                 $route.reload();
             } else {
+                $log.debug("$scope.catalogo", $scope.catalogo);
                 $sessionStorage.catalogo = mixCatalogoWithPedido($scope.catalogo, $scope.pedido);
+                $log.debug("$scope.catalogo", $scope.catalogo);
+                $log.debug("$sessionStorage.catalogo", $sessionStorage.catalogo);
                 $location.path("/pedidos/detalles");
             }
         }
