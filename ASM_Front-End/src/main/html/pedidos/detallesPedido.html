@@ -29,36 +29,7 @@
             </div>
         </div>
         <h4 id="entregacomentarios">Entrega y comentarios:</h4>
-        <div class="form-group"
-             ng-class="{'has-error has-feedback': isInvalidUserInput(detallesPedidoForm.deliveryAddress)}">
-            <label for="deliveryAddress" class="col-sm-3 control-label">Dirección de entrega</label>
-            <div class="col-sm-9">
-                <input type="text" name="deliveryAddress" id="deliveryAddress" class="form-control"
-                       ng-model="pedido.deliveryAddress" required/>
-            </div>
-        </div>
-        <div class="form-group"
-             ng-class="{'has-error has-feedback': isInvalidUserInput(detallesPedidoForm.date)}">
-            <label for="date" class="col-sm-3 control-label">Fecha de entrega</label>
-            <div class="col-sm-9">
-                <date-picker name="date" id="date" ng-model="pedido.date" min-date="minDate"
-                             datepicker-options="dateOptions" ng-readonly="true" ng-required="true"></date-picker>
-            </div>
-        </div>
-        <div class="form-group"
-             ng-class="{'has-error has-feedback': isInvalidUserInput(detallesPedidoForm.date)}">
-            <label for="time" class="col-sm-3 control-label">Hora de entrega</label>
-            <div class="col-sm-9">
-                <div uib-timepicker name="time" id="time" ng-model="pedido.date" show-meridian="false" required></div>
-            </div>
-        </div>
-        <div class="form-group" ng-class="{'has-error has-feedback': isInvalidUserInput(detallesPedidoForm.comments)}">
-            <label for="comments" class="col-sm-3 control-label">Comentarios</label>
-            <div class="col-sm-9">
-                <textarea msd-elastic name="comments" id="comments" class="form-control" ng-model="pedido.comments"
-                          placeholder="Aquí puede escribir cualquier comentario en relación al pedido"></textarea>
-            </div>
-        </div>
+        <entrega-comentarios pedido="pedido" mode="mode"></entrega-comentarios>
         <button type="button" ng-disabled="detallesPedidoForm.$invalid" class="btn btn-primary pull-right"
                 ng-click="next()">
             Siguiente
