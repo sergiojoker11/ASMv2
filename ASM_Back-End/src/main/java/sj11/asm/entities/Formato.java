@@ -26,6 +26,7 @@ public class Formato implements Serializable {
     private Long id;
     private Float cantidad;
     private String unidadMedida;
+    private Integer quantity;
     @ManyToOne
     private Producto producto;
 
@@ -64,12 +65,21 @@ public class Formato implements Serializable {
         this.unidadMedida = unidadMedida;
     }
 
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public String toString() {
         return "Formato{" +
                 "id=" + id +
                 ", cantidad=" + cantidad +
                 ", unidadMedida='" + unidadMedida + '\'' +
+                ", quantity=" + quantity +
                 '}';
     }
 }
