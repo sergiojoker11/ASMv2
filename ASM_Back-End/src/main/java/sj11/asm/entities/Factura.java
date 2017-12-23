@@ -1,20 +1,25 @@
 package sj11.asm.entities;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+@Entity
 public class Factura implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private User user;
     private Date date;
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    @JsonIgnore
     private byte[] pdf;
+    @ManyToOne
+    private User user;
 
     public Factura() {
     }

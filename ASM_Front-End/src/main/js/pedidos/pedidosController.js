@@ -112,6 +112,7 @@ angular.module('asm.pedidosController', [])
         function mixCatalogoWithPedido(catalogo, pedido) {
             var catalogoOutput = deepCopy(catalogo);
             applyPedidoToCatalogo(catalogoOutput, pedido);
+            $log.debug("catalogoOutput", catalogoOutput);
             cleanCatalogoWithPedido(catalogoOutput);
             return catalogoOutput;
         }
