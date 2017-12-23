@@ -19,6 +19,7 @@ var app = angular.module('app', [
     'asm.confirmationDialogController',
     'asm.detallesPedidoController',
     'asm.pedidoConfirmacionController',
+    'asm.misFacturasController',
     //Services
     'asm.productosService',
     'asm.userService',
@@ -26,6 +27,7 @@ var app = angular.module('app', [
     'asm.modalDialogService',
     'asm.catalogoService',
     'asm.pedidosService',
+    'asm.facturasService',
     //Directives
     'asm.widthSource',
     'asm.passwordVerify',
@@ -63,6 +65,10 @@ app.config(function ($locationProvider, $routeProvider, NotificationProvider) {
         .when('/contacto', {
             templateUrl: 'contacto/contacto.html'
         })
+        .when('/panelControl', {
+            templateUrl: 'panelControl/panelControl.html',
+            controller: 'panelControlController'
+        })
         .when('/pedidos', {
             templateUrl: 'pedidos/pedidos.html',
             controller: 'pedidosController'
@@ -75,13 +81,13 @@ app.config(function ($locationProvider, $routeProvider, NotificationProvider) {
             templateUrl: 'pedidos/pedidoConfirmacion.html',
             controller: 'pedidoConfirmacionController'
         })
-        .when('/panelControl', {
-            templateUrl: 'panelControl/panelControl.html',
-            controller: 'panelControlController'
-        })
         .when('/pedidos/admin', {
             templateUrl: 'admin/admin.html',
             controller: 'adminController'
+        })
+        .when('/pedidos/facturas', {
+            templateUrl: 'facturas/misFacturas.html',
+            controller: 'misFacturasController'
         })
         .otherwise({redirectTo: '/'});
     // enable html5Mode for pushstate ('#'-less URLs)

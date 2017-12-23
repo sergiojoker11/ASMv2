@@ -1,0 +1,17 @@
+<h3>Mis facturas</h3>
+<div class="container-fluid">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Factura</th>
+        </tr>
+        </thead>
+        <tbody data-ng-repeat="factura in facturas">
+        <tr ng-class-odd="'table-striped-odd-row'">
+            <td><span>{{factura.date}}</span></td>
+            <td><a class="btn btn-default" href="{{factura._links.self.href}}/pdf.pdf" target="_blank">Descargar</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
