@@ -1,5 +1,7 @@
 package sj11.asm.entities;
 
+import sj11.asm.classes.GeneroNotPersisted;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -10,7 +12,7 @@ public class Pedido {
     private String deliveryAddress;
     private Date deliveryDate;
     private String comments;
-    private List<Genero> items;
+    private List<GeneroNotPersisted> items;
 
     public User getUser() {
         return user;
@@ -44,11 +46,11 @@ public class Pedido {
         this.comments = comments;
     }
 
-    public List<Genero> getItems() {
+    public List<GeneroNotPersisted> getItems() {
         return items;
     }
 
-    public void setItems(List<Genero> items) {
+    public void setItems(List<GeneroNotPersisted> items) {
         this.items = items;
     }
 

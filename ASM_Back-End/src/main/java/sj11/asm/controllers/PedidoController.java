@@ -18,7 +18,8 @@ public class PedidoController {
         //Persistir facturar
         byte [] facturapdf = {};
         Factura factura = new Factura(pedido.getUser(), new Date(), facturapdf);
+        System.out.println(factura);
         //Devolver id de la factura
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(factura.getId(), HttpStatus.OK);
     }
 }
