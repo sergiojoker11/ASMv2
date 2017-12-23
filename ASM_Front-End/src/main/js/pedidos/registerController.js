@@ -31,6 +31,7 @@ angular.module('asm.registerController', [])
 
             function initializeDirective() {
                 $scope.mode = "register";
+                $scope.user = {};
             }
 
             $scope.register = register;

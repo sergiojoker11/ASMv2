@@ -1,4 +1,12 @@
 <h3>Mis facturas</h3>
 <div class="container-fluid">
-    <user-details user="user" mode="mode"></user-details>
+    <ng-form name="miPerfilForm" novalidate role="form">
+        <user-details user="user" mode="mode"></user-details>
+        <button type="button" class="btn btn-primary pull-right" ng-click="updatePerfil()"
+                ng-disabled="miPerfilForm.$invalid">
+            Guardar
+        </button>
+        <span class="pull-right">&nbsp;&nbsp;</span>
+        <a class="btn btn-primary pull-right" href="/pedidos">Cancelar</a>
+    </ng-form>
 </div>

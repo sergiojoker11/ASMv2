@@ -5,7 +5,7 @@ angular.module('asm.miPerfilController', [])
 
         function getPerfil() {
             userService.getMiPerfil($rootScope.user).then(function (response) {
-                $scope.user = response.data.user;
+                $scope.user = response.data;
             }, function (error) {
                 $log.debug("Error obteniendo la informacion del user", error);
                 Notification.error("No hemos podido obtener su perfil. Si el error persiste, póngase en contacto con el administrador");
@@ -14,9 +14,9 @@ angular.module('asm.miPerfilController', [])
 
         function updatePerfil() {
             userService.updatePerfil($scope.user).then(function (response) {
-                authenticationService.login(response.data._embedded.user);
-                Notification.success("Su perfil has sido actualizado");
-                $location.path("/pedido");
+                authenticationService.login(response.data);
+                Notification.success("Su perfil ha sido actualizado");
+                $location.path("/pedidos");
             }, function (error) {
                 $log.debug("Error actualizando la informacion del user", error);
                 Notification.error("No hemos podido actualizar su perfil. Si el error persiste, póngase en contacto con el administrador");
@@ -24,8 +24,12 @@ angular.module('asm.miPerfilController', [])
         }
 
         function initialize() {
-            $scope.mode = "edit";
-            getPerfil();
+            if (authenticationService.isAuthenticated()) {
+                $scope.mode = "edit";
+                getPerfil();
+            } else {
+                $location.path("/pedidos");
+            }
         }
 
         $scope.updatePerfil = updatePerfil;
