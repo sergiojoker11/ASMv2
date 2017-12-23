@@ -82,12 +82,21 @@ public class PdfService {
         }
         pedidoTable.getDefaultCell().setBorder(0);
         PdfPCell descripcionCell = new PdfPCell();
+        descripcionCell.setBorder(0);
+        descripcionCell.enableBorderSide(Rectangle.BOTTOM);
         descripcionCell.setBorderWidthBottom(1.0f);
-        descripcionCell.addElement(new Phrase("Descripción"));
+        descripcionCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        descripcionCell.addElement(new Phrase("   Descripción"));
         pedidoTable.addCell(descripcionCell);
         PdfPCell cantidadCell = new PdfPCell();
+        cantidadCell.setBorder(0);
+        cantidadCell.enableBorderSide(Rectangle.BOTTOM);
+        cantidadCell.enableBorderSide(Rectangle.LEFT);
         cantidadCell.setBorderWidthBottom(1.0f);
-        cantidadCell.addElement(new Phrase("Cantidad"));
+        cantidadCell.setBorderWidthLeft(0.6f);
+        cantidadCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cantidadCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        cantidadCell.addElement(new Phrase("   Cantidad"));
         pedidoTable.addCell(cantidadCell);
         for (GeneroNotPersisted genero : pedido.getItems()) {
             PdfPCell generoCell = new PdfPCell();
@@ -95,14 +104,24 @@ public class PdfService {
             generoCell.setBorder(0);
             generoCell.addElement(new Phrase("> " + genero.getName()));
             pedidoTable.addCell(generoCell);
-            pedidoTable.addCell("");
+            PdfPCell generoCell2 = new PdfPCell();
+            generoCell2.setBorder(0);
+            generoCell2.enableBorderSide(Rectangle.LEFT);
+            generoCell2.setBorderWidthLeft(0.6f);
+            generoCell2.addElement(new Phrase(""));
+            pedidoTable.addCell(generoCell2);
             for (Producto producto : genero.getProductosList()) {
                 PdfPCell productoCell = new PdfPCell();
                 productoCell.setHorizontalAlignment(Element.ALIGN_CENTER);
                 productoCell.setBorder(0);
                 productoCell.addElement(new Phrase("    - " + producto.getNombre()));
                 pedidoTable.addCell(productoCell);
-                pedidoTable.addCell("");
+                PdfPCell productoCell2 = new PdfPCell();
+                productoCell2.setBorder(0);
+                productoCell2.enableBorderSide(Rectangle.LEFT);
+                productoCell2.setBorderWidthLeft(0.6f);
+                productoCell2.addElement(new Phrase(""));
+                pedidoTable.addCell(productoCell2);
                 for (Formato formato : producto.getListaFormatos()) {
                     PdfPCell formatoCell1 = new PdfPCell();
                     formatoCell1.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -112,7 +131,10 @@ public class PdfService {
                     PdfPCell formatoCell2 = new PdfPCell();
                     formatoCell2.setHorizontalAlignment(Element.ALIGN_CENTER);
                     formatoCell2.setVerticalAlignment(Element.ALIGN_MIDDLE);
-                    formatoCell2.addElement(new Phrase(String.valueOf(formato.getQuantity())));
+                    formatoCell2.setBorder(0);
+                    formatoCell2.enableBorderSide(Rectangle.LEFT);
+                    formatoCell2.setBorderWidthLeft(0.6f);
+                    formatoCell2.addElement(new Phrase("      " + String.valueOf(formato.getQuantity())));
                     pedidoTable.addCell(formatoCell2);
                 }
             }
