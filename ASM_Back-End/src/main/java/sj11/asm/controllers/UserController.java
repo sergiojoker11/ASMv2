@@ -1,7 +1,10 @@
 package sj11.asm.controllers;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,9 +42,9 @@ public class UserController {
         Map<String, Object> templateContext = new HashMap<>();
         templateContext.put("user", user);
         try {
-            emailService.sendMail(user.getEmail(), "Aceitunas Sánchez Montes: solicitud de recordatorio de password", "passwordRemider.vm", templateContext);
+            emailService.sendMail(Arrays.asList(user.getEmail()).toArray(new String[0]), "Aceitunas Sánchez Montes: solicitud de recordatorio de password", "passwordRemider.vm", templateContext, Optional.empty(), Optional.empty());
         } catch (RuntimeException runExc) {
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }

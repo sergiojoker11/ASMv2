@@ -1,0 +1,11 @@
+<html>
+<body>
+<p>Estimado ${user.name},</p>
+
+<p>Este es el email de confirmacion de pedido. La factura se encuentra adjunta a este email.</p>
+
+<p>Muchas gracias por confiar en nosotros. Espero que tenga un buen día.</p>
+
+<p>Equipo Aceitunas Sánchez Montes</p>
+</html>
+</body>
