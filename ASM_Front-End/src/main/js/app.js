@@ -35,6 +35,7 @@ var app = angular.module('app', [
     'asm.catalogoPedido',
     'asm.entregaComentarios',
     'asm.userDetails',
+    'asm.loginEntrarButton',
     'ngFileUpload',
     'ngStorage',
     'monospaced.elastic'
@@ -78,7 +79,7 @@ app.config(function ($locationProvider, $routeProvider, NotificationProvider) {
             templateUrl: 'panelControl/panelControl.html',
             controller: 'panelControlController'
         })
-        .when('/admin', {
+        .when('/pedidos/admin', {
             templateUrl: 'admin/admin.html',
             controller: 'adminController'
         })

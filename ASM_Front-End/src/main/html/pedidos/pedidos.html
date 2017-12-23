@@ -1,20 +1,3 @@
-<div class="pull-right">
-    <div ng-show="isAuthenticated()" class="btn-group" uib-dropdown keyboard-nav>
-        <button id="loginButton" type="button" class="btn btn-primary" uib-dropdown-toggle>
-            {{getEntrarButtonText()}}&nbsp<span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-left" uib-dropdown-menu role="menu" aria-labelledby="loginButton">
-            <li role="menuitem"><a>Mi perfil</a></li>
-            <li role="menuitem"><a>Mis facturas</a></li>
-            <li role="menuitem" ng-show="isAdmin()"><a href="/admin">Administración</a></li>
-            <li class="divider"></li>
-            <li role="menuitem"><a ng-click="logout()">Salir</a></li>
-        </ul>
-    </div>
-    <button ng-hide="isAuthenticated()" type="button" class="btn btn-primary" ng-click="openEntrarDialog()">
-        <span>{{getEntrarButtonText()}}</span>
-    </button>
-</div>
 <h3 id="hagasupedido">Haga su pedido</h3>
 <div class="container-fluid">
     <uib-progressbar class="progress-striped active" type="success">0 %</uib-progressbar>

@@ -15,11 +15,11 @@
     <div id="page-content-wrapper">
         <div class="header-container" ng-include="'menu/header.html'"></div>
         <div class="container-fluid">
+            <login-entrar-button ng-if="showLoginEntrarButton()"></login-entrar-button>
             <div ng-view ng-cloak class="ng-cloak"></div>
             <div ng-include="'menu/footer.html'"></div>
         </div>
     </div>
-</div>
-<%= script_block %>
+    <%= script_block %>
 </body>
 </html>

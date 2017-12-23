@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('asm.accionesMenuController', [])
-        .controller('accionesMenuController', function($scope) {
+        .controller('accionesMenuController', function($scope, $location) {
   
     $scope.menuMostrado = false;
     
@@ -16,5 +16,12 @@ angular.module('asm.accionesMenuController', [])
             $scope.menuMostrado = false;
         }
     });
+
+    function showLoginEntrarButton() {
+        return $location.path().indexOf("/pedidos") !== -1;
+    }
+
+    $scope.showLoginEntrarButton = showLoginEntrarButton;
+
 });
 
