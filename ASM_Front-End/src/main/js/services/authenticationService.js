@@ -1,6 +1,6 @@
 'use strict';
 angular.module('asm.authenticationService', [])
-        .factory('authenticationService', function ($http, $rootScope, Notification, $localStorage) {
+        .factory('authenticationService', function ($http, $rootScope, $localStorage) {
 
             function authenticate(credentials) {
                 return $http.post('http://localhost:8084/ASM_Back-End/login', credentials);
@@ -10,7 +10,6 @@ angular.module('asm.authenticationService', [])
                 delete user.password;
                 $rootScope.user = user;
                 $localStorage.user = $rootScope.user;
-                Notification.success('Bienvenido '+$rootScope.user.username+ ' !');
             }
             
             function loginWithCredentialsFromLocalStorageIfThereAre() {

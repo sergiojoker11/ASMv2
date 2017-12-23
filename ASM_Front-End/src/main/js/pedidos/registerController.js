@@ -28,14 +28,14 @@ angular.module('asm.registerController', [])
             function dismiss() {
                 $uibModalInstance.dismiss('cancel');
             }
-            
-            function isInvalidUserInput(element) {
-                return angular.isDefined(element) && element.$invalid && !element.$pristine;
+
+            function initializeDirective() {
+                $scope.mode = "register";
             }
 
             $scope.register = register;
             $scope.close = close;
             $scope.dismiss = dismiss;
-            $scope.isInvalidUserInput = isInvalidUserInput;
+            initializeDirective();
         });
 

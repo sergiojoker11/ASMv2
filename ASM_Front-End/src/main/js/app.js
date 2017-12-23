@@ -20,6 +20,7 @@ var app = angular.module('app', [
     'asm.detallesPedidoController',
     'asm.pedidoConfirmacionController',
     'asm.misFacturasController',
+    'asm.miPerfilController',
     //Services
     'asm.productosService',
     'asm.userService',
@@ -88,6 +89,10 @@ app.config(function ($locationProvider, $routeProvider, NotificationProvider) {
         .when('/pedidos/facturas', {
             templateUrl: 'facturas/misFacturas.html',
             controller: 'misFacturasController'
+        })
+        .when('/pedidos/perfil', {
+            templateUrl: 'miPerfil/miPerfil.html',
+            controller: 'miPerfilController'
         })
         .otherwise({redirectTo: '/'});
     // enable html5Mode for pushstate ('#'-less URLs)

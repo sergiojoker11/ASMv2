@@ -10,9 +10,6 @@ angular.module('asm.entregaComentarios', [])
                     mode: '='
                 },
                 controller: function ($scope) {
-                    function isEditMode() {
-                        return $scope.mode === 'edit';
-                    }
 
                     function isReadonly() {
                         return $scope.mode === 'readonly';
@@ -30,7 +27,6 @@ angular.module('asm.entregaComentarios', [])
                         return angular.isDefined(element) && element.$invalid && !element.$pristine;
                     }
 
-                    $scope.isEditMode = isEditMode;
                     $scope.isReadonly = isReadonly;
                     $scope.isEmptyAndReadonly = isEmptyAndReadonly;
                     $scope.isInvalidUserInput = isInvalidUserInput;

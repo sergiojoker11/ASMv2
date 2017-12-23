@@ -14,19 +14,43 @@
                    ng-disabled="isReadonly()" required/>
         </div>
     </div>
-    <div class="form-group" ng-class="{'has-error has-feedback': isInvalidUserInput(userDetailsForm.phone)}">
+    <div ng-if="isRegisterMode() || isEditMode()" class="form-group"
+         ng-class="{ 'has-error has-feedback': isInvalidUserInput(userDetailsForm.username)}">
+        <label for="username" class="col-sm-3 control-label">Nombre de usuario</label>
+        <div class="col-sm-9">
+            <input type="text" name="username" id="username" class="form-control" ng-model="user.username" required/>
+        </div>
+    </div>
+    <div ng-if="isBuyMode() || isEditMode() || isReadonly()" class="form-group"
+         ng-class="{'has-error has-feedback': isInvalidUserInput(userDetailsForm.phone)}">
         <label for="phone" class="col-sm-3 control-label">Teléfono</label>
         <div class="col-sm-9">
             <input type="text" name="phone" id="phone" class="form-control" ng-model="user.phone"
                    ng-disabled="isReadonly()" required/>
         </div>
     </div>
-    <div ng-hide="isEmptyAndReadonly(user.phone2)" class="form-group"
+    <div ng-if="isBuyMode() || isEditMode() || isEmptyAndReadonly(user.phone2)" class="form-group"
          ng-class="{'has-error has-feedback': isInvalidUserInput(userDetailsForm.phone2)}">
         <label for="phone2" class="col-sm-3 control-label">Teléfono alternativo</label>
         <div class="col-sm-9">
             <input type="text" name="phone2" id="phone2" class="form-control" ng-model="user.phone2"
                    ng-disabled="isReadonly()"/>
+        </div>
+    </div>
+    <div ng-if="isRegisterMode() || isEditMode()" class="form-group"
+         ng-class="{ 'has-error has-feedback': isInvalidUserInput(userDetailsForm.password) || userDetailsForm.password.$error.passwordVerify}">
+        <label for="password" class="col-sm-3 control-label">Password</label>
+        <div class="col-sm-9">
+            <input type="password" name="password" id="password" class="form-control" ng-model="user.password"
+                   required/>
+        </div>
+    </div>
+    <div ng-if="isRegisterMode() || isEditMode()" class="form-group"
+         ng-class="{ 'has-error has-feedback': isInvalidUserInput(userDetailsForm.passwordRepeat) || userDetailsForm.passwordRepeat.$error.passwordVerify}">
+        <label for="passwordRepeat" class="col-sm-3 control-label">Confirmación password</label>
+        <div class="col-sm-9">
+            <input type="password" name="passwordRepeat" id="passwordRepeat" class="form-control"
+                   ng-model="user.passwordRepeat" required password-verify="user.password"/>
         </div>
     </div>
 </ng-form>

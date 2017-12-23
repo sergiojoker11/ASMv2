@@ -73,16 +73,16 @@ angular.module('asm.pedidosController', [])
             });
         }
 
-        function deepCopy(obj) {
-            return JSON.parse(JSON.stringify(obj));
-        }
+        // function deepCopy(obj) {
+        //     return JSON.parse(JSON.stringify(obj));
+        // }
 
         function mixCatalogoWithPedido(catalogo, pedido) {
-            var catalogoOutput = deepCopy(catalogo);
-            applyPedidoToCatalogo(catalogoOutput, pedido);
-            $log.debug("catalogoOutput", catalogoOutput);
-            cleanCatalogoWithPedido(catalogoOutput);
-            return catalogoOutput;
+            // var catalogoOutput = deepCopy(catalogo);
+            applyPedidoToCatalogo(catalogo, pedido);
+            // $log.debug("catalogoOutput", catalogoOutput);
+            cleanCatalogoWithPedido(catalogo);
+            // return catalogoOutput;
         }
 
         function next() {
@@ -92,7 +92,8 @@ angular.module('asm.pedidosController', [])
                 $route.reload();
             } else {
                 $log.debug("$scope.catalogo", $scope.catalogo);
-                $sessionStorage.catalogo = mixCatalogoWithPedido($scope.catalogo, $scope.pedido);
+                mixCatalogoWithPedido($scope.catalogo, $scope.pedido);
+                $sessionStorage.catalogo = $scope.catalogo;
                 $log.debug("$scope.catalogo", $scope.catalogo);
                 $log.debug("$sessionStorage.catalogo", $sessionStorage.catalogo);
                 $location.path("/pedidos/detalles");

@@ -32,7 +32,7 @@ angular.module('asm.loginEntrarButton', [])
                 }
 
                 function logout() {
-                    return authenticationService.logout();
+                    authenticationService.logout();
                 }
 
                 function loginWithCredentialsFromLocalStorageIfThereAre() {

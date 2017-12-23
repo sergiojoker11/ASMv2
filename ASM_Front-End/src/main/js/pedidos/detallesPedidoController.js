@@ -18,7 +18,7 @@ angular.module('asm.detallesPedidoController', [])
         }
 
         function initialize() {
-            $scope.mode = 'edit';
+            $scope.mode = 'buy';
             if (angular.isDefined($sessionStorage.pedidoStep1)) {
                 if (angular.isDefined($sessionStorage.pedidoStep2)) {
                     $scope.pedido = $sessionStorage.pedidoStep2;

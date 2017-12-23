@@ -13,7 +13,6 @@ angular.module('asm.misFacturasController', [])
         }
 
         function initialize() {
-            $scope.facturas = {};
             getFacturas();
         }
 
