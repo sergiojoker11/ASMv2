@@ -1,0 +1,9 @@
+{
+  "application": {
+    "name": "Aceitunas Sanchez Montes",
+    "brand": "ASM"
+  },
+  "paths": {
+    "frontToBackEnd": "../ASM-Back-End/"
+  }
+}

@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>sj11</groupId>
-    <artifactId>ASM_Front-End</artifactId>
+    <artifactId>ASM-Front-End</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>ASM_Front-End</name>
+    <name>ASM-Front-End</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>

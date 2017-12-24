@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>sj11</groupId>
-    <artifactId>ASM_Back-End</artifactId>
+    <artifactId>ASM-Back-End</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>ASM_Back-End</name>
+    <name>ASM-Back-End</name>
     <description>Back End for ASM website</description>
 
     <parent>
@@ -66,7 +66,6 @@
             <version>${apache.commons.io.version}</version>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -75,6 +74,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>

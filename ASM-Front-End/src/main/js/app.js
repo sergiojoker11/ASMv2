@@ -4,6 +4,7 @@ var app = angular.module('app', [
     'ngRoute',
     'ui.bootstrap',
     'ui-notification',
+    'constants',
     //Controllers
     'asm.inicioController',
     'asm.productosController',
