@@ -1,9 +1,9 @@
 'use strict';
 angular.module('asm.pedidosService', [])
-    .factory('pedidosService', function ($http) {
+    .factory('pedidosService', function ($http, paths) {
 
         function checkout(pedido) {
-            return $http.post('http://localhost:8084/ASM_Back-End/pedidos/', pedido);
+            return $http.post(paths.frontToBackEnd + 'pedidos', pedido);
         }
 
         return {

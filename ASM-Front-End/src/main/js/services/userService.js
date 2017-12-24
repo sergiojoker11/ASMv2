@@ -1,21 +1,21 @@
 'use strict';
 angular.module('asm.userService', [])
-        .factory('userService', function ($http) {
+        .factory('userService', function ($http, paths) {
             
             function register(user) {
-                return $http.post('http://localhost:8084/ASM_Back-End/users/',  user);
+                return $http.post(paths.frontToBackEnd + 'users',  user);
             }
             
             function remindPassword(email) {
-                return $http.post('http://localhost:8084/ASM_Back-End/remindPassword/',  email);
+                return $http.post(paths.frontToBackEnd + 'remindPassword',  email);
             }
 
             function getMiPerfil(user) {
-                return $http.get('http://localhost:8084/ASM_Back-End/users/'+ user.id);
+                return $http.get(paths.frontToBackEnd + 'users/'+ user.id);
             }
 
             function updatePerfil(user) {
-                return $http.put('http://localhost:8084/ASM_Back-End/users/'+ user.id, user);
+                return $http.put(paths.frontToBackEnd + 'users/'+ user.id, user);
             }
             
             return {

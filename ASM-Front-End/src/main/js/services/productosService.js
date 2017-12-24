@@ -1,18 +1,18 @@
 'use strict';
 
 angular.module('asm.productosService', [])
-        .factory('productosService', function ($http) {
+    .factory('productosService', function ($http, paths) {
 
-    function insertar(producto) {
-        return $http.post("http://localhost:8084/ASM_Back-End/productoes", producto);
-    }
-    
-    function get(id) {
-        return $http.get("http://localhost:8084/ASM_Back-End/productoes/"+id);
-    }
+        function insertar(producto) {
+            return $http.post(paths.frontToBackEnd + "productoes", producto);
+        }
 
-    return {
-        insertar: insertar,
-        get: get
-    };
-});
+        function get(id) {
+            return $http.get(paths.frontToBackEnd + "productoes/" + id);
+        }
+
+        return {
+            insertar: insertar,
+            get: get
+        };
+    });
